@@ -6,8 +6,4 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Sing your talent' });
 });
 
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Sing your talent' });
-});
-
 module.exports = router;

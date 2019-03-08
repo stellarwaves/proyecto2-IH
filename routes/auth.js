@@ -5,7 +5,7 @@ const router = express.Router();
 
 const User = require('../models/User');
 
-const { requireAnon, requireUser, requireFields } 
+const { requireAnon, requireFields } = require('../middlewares/auth');
 
 const saltRounds = 10;
 
@@ -39,3 +39,5 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;
