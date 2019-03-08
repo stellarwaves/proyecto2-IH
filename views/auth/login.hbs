@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<form action="/auth/login" method="POST">
+   <div class="field">
+      <label for="">Mail</label>
+      <input type="email" placeholder="Mail" name="mail">
+   </div>
+   <div class="field">
+      <label for="">Password</label>
+      <input type="password" placeholder="Password" name="password">
+   </div>
+   <div class="field">
+      <button type="submit">Send</button>
+   </div>
+</form>
+
+{{> flash}}

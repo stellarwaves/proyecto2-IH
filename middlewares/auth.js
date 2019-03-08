@@ -8,7 +8,7 @@ module.exports = {
     }
     next();
   },
-  requiereUser (req, res, next) {
+  requireUser (req, res, next) {
     if (!req.session.currentUser) {
       res.redirect('/');
       return;
