@@ -10,9 +10,9 @@
   <nav class="main-nav">
     {{#if currentUser}}
       <div>
-        <p>Hola pirinolas</p>
+        <h3>¡SYTUDI!</h3>
         <form action="/auth/logout" method="POST">
-          <button type="submit">Logout</button>
+          <button class="logout-button" type="submit">Logout</button>
         </form>
       </div>
     {{else}}

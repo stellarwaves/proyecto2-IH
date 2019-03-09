@@ -1,0 +1,13 @@
+<h1>Quieres aprender a tocar mi {{title}}</h1>
+
+<ul>
+   {{#each users}}
+      <li>
+         <a href="/detail/{{id}}">
+            <p>{{name}}</p>
+            <p>{{header}}</p>
+            <p>{{description}}</p>
+         </a>
+      </li>
+   {{/each}}
+</ul>

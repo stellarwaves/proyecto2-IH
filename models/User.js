@@ -18,6 +18,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  header: {
+    type: String,
+    required: true
+  },
   //   imageUrl: {
   //     type: String
   //   },
@@ -26,7 +30,7 @@ const userSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['acordeon', 'armonica', 'bajo', 'bateria', 'clarinete', 'flauta', 'guitarra', 'maracas', 'piano', 'saxofon', 'trompeta', 'violin']
+    enum: ['acordeon', 'armonica', 'bajo', 'bateria', 'flauta', 'guitarra', 'maracas', 'piano', 'saxofon', 'trompeta', 'violin']
   }
 //   level: {
 //     type: String,

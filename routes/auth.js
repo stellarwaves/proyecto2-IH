@@ -17,7 +17,7 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
-  const { name, mail, password, description, category } = req.body;
+  const { name, mail, password, header, description, category } = req.body;
   try {
     const result = await User.findOne({ name });
     if (result) {
@@ -29,7 +29,7 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     const newUser = {
-      name, mail, password: hashedPassword, description, category
+      name, mail, password: hashedPassword, header, description, category
     };
     const createUser = await User.create(newUser);
     req.session.currentUser = createUser;
@@ -58,7 +58,7 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
 
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('/');
+      res.redirect('/categories');
     } else {
       req.flash('Validation', 'Username or password are incorrect we are the world');
       res.redirect('/auth/login');
