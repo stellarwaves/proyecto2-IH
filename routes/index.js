@@ -2,17 +2,18 @@ const express = require('express')
 const router = express.Router()
 
 const User = require('../models/User')
+const { requireUser } = require('../middlewares/auth');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Sing your talent' })
 })
 
-router.get('/categories', (req, res, next) => {
+router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
 
-router.get('/list', async (req, res, next) => {
+router.get('/list', requireUser, async (req, res, next) => {
   const instrument = req.query.id
 
   try {
@@ -23,7 +24,7 @@ router.get('/list', async (req, res, next) => {
   }
 })
 
-router.get('/detail/:id', async (req, res, next) => {
+router.get('/detail/:id', requireUser, async (req, res, next) => {
   const { id } = req.params
   console.log(id)
   try {
@@ -34,7 +35,7 @@ router.get('/detail/:id', async (req, res, next) => {
   }
 })
 
-router.get('/profile/edit', async (req, res, next) => {
+router.get('/profile/edit', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
@@ -44,7 +45,7 @@ router.get('/profile/edit', async (req, res, next) => {
   }
 })
 
-router.post('/profile/edit', async (req, res, next) => {
+router.post('/profile/edit', requireUser, async (req, res, next) => {
   const id = req.session.currentUser._id
   const { name, description, category } = req.body
   const userProfile = { name, description, category }
@@ -58,7 +59,7 @@ router.post('/profile/edit', async (req, res, next) => {
   }
 })
 
-router.post('/profile/delete', async (req, res, next) => {
+router.post('/profile/delete', requireUser, async (req, res, next) => {
   const id = req.session.currentUser._id
   try {
     await User.findByIdAndDelete(id)
