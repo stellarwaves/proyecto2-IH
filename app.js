@@ -1,18 +1,18 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const flash = require('connect-flash');
-const hbs = require('hbs');
+require('dotenv').config()
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const mongoose = require('mongoose')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const flash = require('connect-flash')
+const hbs = require('hbs')
 
-const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index')
+const authRouter = require('./routes/auth')
 
-const app = express();
+const app = express()
 
 app.use(session({
   store: new MongoStore({
@@ -25,50 +25,56 @@ app.use(session({
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
   }
-}));
+}))
 
-app.use(flash());
+app.use(flash())
 
-mongoose.connect(process.env.MONGODB_URI, {
+// mongoose.connect(process.env.MONGODB_URI, {
+//   keepAlive: true,
+//   useNewUrlParser: true,
+//   reconnectTries: Number.MAX_VALUE
+// })
+
+mongoose.connect('mongodb://localhost/database-name', {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
-});
+})
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-hbs.registerPartials(path.join(__dirname, '/views/partials'));
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'hbs')
+hbs.registerPartials(path.join(__dirname, '/views/partials'))
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use((req, res, next) => {
-  app.locals.currentUser = req.session.currentUser;
-  next();
-});
+  app.locals.currentUser = req.session.currentUser
+  next()
+})
 
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
+app.use('/', indexRouter)
+app.use('/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  res.status(404);
-  res.render('not-found');
-});
+  res.status(404)
+  res.render('not-found')
+})
 
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+  res.status(err.status || 500)
+  res.render('error')
+})
 
-module.exports = app;
+module.exports = app
