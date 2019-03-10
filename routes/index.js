@@ -34,4 +34,38 @@ router.get('/detail/:id', async (req, res, next) => {
   }
 })
 
+router.get('/profile/edit', async (req, res, next) => {
+  const { _id } = req.session.currentUser
+  try {
+    const profile = await User.findById(_id)
+    res.render('templates/edit', profile)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/profile/edit', async (req, res, next) => {
+  const id = req.session.currentUser._id
+  const { name, description, category } = req.body
+  const userProfile = { name, description, category }
+  console.log(id)
+
+  try {
+    await User.findByIdAndUpdate(id, userProfile)
+    res.redirect('/categories')
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/profile/delete', async (req, res, next) => {
+  const id = req.session.currentUser._id
+  try {
+    await User.findByIdAndDelete(id)
+    res.redirect('/')
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
