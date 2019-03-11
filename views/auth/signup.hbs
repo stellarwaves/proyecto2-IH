@@ -1,59 +1,61 @@
 <h1>Regístrate hola</h1>
 
-<form method="POST" action="/auth/signup" enctype="multipart/form-data">
-   <div class="field">
-      <label>Nombre</label>
-      <input type="text" name="name">
-   </div>
+<section class="form-section">
+   <form class="user-form" method="POST" action="/auth/signup" enctype="multipart/form-data">
+      <div class="inputs">
+         <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Name">
+         </div>
 
-   <div class="field">
-      <label>Correo electrónico</label>
-      <input type="email" name="mail">
-   </div>
+         <div class="field">
+            <label>Email</label>
+            <input type="email" name="mail" placeholder="Email">
+         </div>
 
-   <div class="field">
-      <label>Contraseña</label>
-      <input type="password" name="password">
-   </div>
+         <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password">
+         </div>
 
-  <div class="field">
-      <label>Propuesta</label>
-      <input type="text" name="header">
-   </div>
+         <div class="field">
+            <label>Name your course</label>
+            <input type="text" name="header" placeholder="Name your course">
+         </div>
 
+         <div class="field">
+            <label>Description</label>
+            <input type="text" name="description" placeholder="Description">
+         </div>
 
-   <div class="field">
-      <label> Descripción</label>
-      <input type="text" name="description">
-   </div>
+         <div class="field">
+            <label>Choose your instrument</label>
+            <select name="category" id="ctegories-list">
+               <option value="acordeon">Acordeón</option>
+               <option value="armonica">Armónica</option>
+               <option value="bajo">Bajo</option>
+               <option value="bateria">Bateria</option>
+               <option value="castanuelas">Castañuelas</option>
+               <option value="clarinete">Clarinete</option>
+               <option value="flauta">Flauta</option>
+               <option value="guitarra">Guitarra</option>
+               <option value="maracas">Maracas</option>
+               <option value="piano">Piano</option>
+               <option value="saxofon">Saxofón</option>
+               <option value="trompeta">Trompeta</option>
+               <option value="violin">Violín</option>
+            </select>
+         </div>
 
-   <div>
-      <label >Tu instrumento</label>
-      <select name="category" id="ctegories-list">
-         <option value="acordeon">Acordeón</option>
-         <option value="armonica">Armónica</option>
-         <option value="bajo">Bajo</option>
-         <option value="bateria">Bateria</option>
-         <option value="castanuelas">Castañuelas</option>
-         <option value="clarinete">Clarinete</option>
-         <option value="flauta">Flauta</option>
-         <option value="guitarra">Guitarra</option>
-         <option value="maracas">Maracas</option>
-         <option value="piano">Piano</option>
-         <option value="saxofon">Saxofón</option>
-         <option value="trompeta">Trompeta</option>
-         <option value="violin">Violín</option>
-      </select>
-   </div>
+         <div class="field img">
+            <label for="">Portada</label>
+            <input type="file" name="image-back">
+         </div>
 
-   <div class="field img">
-      <label for="">Portada</label>
-      <input type="file" name="image-back">
-   </div>
+      </div>
 
-   <div class="field submit">
-      <button type="submit">Send</button>
-   </div>
-</form>
+      <button class="btn btn-primary"  type="submit">Send</button>
 
-{{> flash}}
+   </form>
+   {{> flash}}
+</section>
