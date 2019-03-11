@@ -13,50 +13,36 @@ body {
   padding: 0;
 }
 
-
-/* ---- hero ---- */
-.hero{
-  display: grid;
-  align-items: center;
+section{
   padding: 20px;
   height: 100vh;
-  background: url(../images/hero-img.png) no-repeat;
-  background-size: cover;
 }
 
-.hero-content{
-  display: flex;
-  flex-direction: column;
-}
+/* ---- Buttons ---- */
 
-.hero-content h1{
-  font-size: 5em;
-}
-
-.hero-content .create-account{
-  font-size: 0.9em;
-  text-align: right;
-  color: #FFFFFF;
-}
-
-.hero-content h1{
-  font-size: 2em;
+.btn{
+  padding: 15px 0;
+  font-size: 1.063em;
   text-align: center;
+  text-decoration: none;
+  border-radius: 30px;
+  color: #ffffff;
 }
-
-.hero-content .create-account a{
-  color: #FFFFFF;
-}
-
 
 .btn-outline{
   margin: 0 0 30px 0;
-  padding: 12px 0;
-  text-align: center;
-  text-decoration: none;
   border: 1px solid #ffffff;
-  border-radius: 30px;
-  color: #ffffff;
+
+}
+
+.btn-primary{
+  width: 100%;
+  border: 0;
+  background: #4295ff; /* Old browsers */
+  background: -moz-linear-gradient(left, #4295ff 0%, #49dfd7 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #4295ff 0%,#49dfd7 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #4295ff 0%,#49dfd7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4295ff', endColorstr='#49dfd7',GradientType=1 ); /* IE6-9 */
 }
 
 .logout-button{
@@ -69,3 +55,45 @@ body {
   border-radius: 6px;
   border: 2px solid #0016b0;
 }
+
+/* ---- hero ---- */
+.hero{
+  display: grid;
+  align-items: center;
+  background: url(../images/hero-img.png) no-repeat;
+  background-size: cover;
+}
+
+.hero-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-content h1{
+  font-size: 4em;
+  color: #FFF;
+  text-align: center;
+  margin: 0 0 100px 0;
+}
+
+.hero-content .create-account{
+  font-size: 0.9em;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.hero-content .create-account a{
+  color: #FFFFFF;
+}
+
+/* ---- Sign in / Signup ---- */
+
+.user-form .field input{
+  padding: 11px;
+  color: #9FA5AA;
+  border: 1px solid #808080;
+  border-radius: 30px;
+  width: 100%;
+  font-size: 1.063em;
+}
+

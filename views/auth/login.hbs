@@ -1,17 +1,23 @@
-<h1>Login</h1>
+<header>
+   <nav>
 
-<form action="/auth/login" method="POST">
-   <div class="field">
-      <label for="">Mail</label>
-      <input type="email" placeholder="Mail" name="mail">
-   </div>
-   <div class="field">
-      <label for="">Password</label>
-      <input type="password" placeholder="Password" name="password">
-   </div>
-   <div class="field">
-      <button type="submit">Send</button>
-   </div>
-</form>
+   </nav>
+   <h1>Login</h1>
+</header>
+<section>
+   <form class="user-form" action="/auth/login" method="POST">
+      <div class="field">
+         <label for="">Mail</label>
+         <input type="email" placeholder="Mail" name="mail">
+      </div>
+      <div class="field">
+         <label for="">Password</label>
+         <input type="password" placeholder="Password" name="password">
+      </div>
+      <div class="field">
+         <button class="btn btn-primary" type="submit">Send</button>
+      </div>
+   </form>
 
-{{> flash}}
+   {{> flash}}
+</section>
