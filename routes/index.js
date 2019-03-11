@@ -23,11 +23,11 @@ router.get('/list', async (req, res, next) => {
   }
 });
 
-router.get('/detail/:id', async (req, res, next) => {
-  const { id } = req.query;
+router.get('/detail/:id ', async (req, res, next) => {
+  const { id } = req.params;
   console.log(id);
   try {
-    const profesor = await User.find(id);
+    const profesor = await User.findById(id);
     res.render('templates/detail', { profesor });
   } catch (error) {
     next(error);

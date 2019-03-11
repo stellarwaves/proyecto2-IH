@@ -35,6 +35,12 @@ mongoose.connect(process.env.MONGODB_URI, {
   reconnectTries: Number.MAX_VALUE
 });
 
+// mongoose.connect('mongodb://localhost/database-name', {
+//   keepAlive: true,
+//   useNewUrlParser: true,
+//   reconnectTries: Number.MAX_VALUE
+// });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
