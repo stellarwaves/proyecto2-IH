@@ -15,10 +15,15 @@ router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
 
-router.get('/list', requireUser,  uploadCloud.single('imageUrl'), async (req, res, next) => {
+router.get('/list', requireUser,  uploadCloud.single('image-back'), async (req, res, next) => {
   const instrument = req.query.id
-
   try {
+    
+    // if (req.session.currentUser) {
+    //   let category = req.session.currentUser.category;
+    //   const products = await User.find({ instrument: { $ne: category } });
+    //   res.render('templates/list', { products });
+    // }
     const users = await User.find({ 'category': instrument })
     res.render('templates/list', { users, title: instrument })
   } catch (error) {
@@ -26,7 +31,7 @@ router.get('/list', requireUser,  uploadCloud.single('imageUrl'), async (req, re
   }
 })
 
-router.get('/detail/:id', requireUser, uploadCloud.single('imageUrl'), async (req, res, next) => {
+router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
   const { id } = req.params
 
   console.log(id)
@@ -38,7 +43,7 @@ router.get('/detail/:id', requireUser, uploadCloud.single('imageUrl'), async (re
   }
 })
 
-router.get('/profile/edit', requireUser, async (req, res, next) => {
+router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
@@ -48,10 +53,11 @@ router.get('/profile/edit', requireUser, async (req, res, next) => {
   }
 })
 
-router.post('/profile/edit', requireUser, async (req, res, next) => {
+router.post('/profile/edit', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
   const id = req.session.currentUser._id
+  const { url: imageUrl } = req.file
   const { name, description, category } = req.body
-  const userProfile = { name, description, category }
+  const userProfile = { name, description, category, imageUrl }
   console.log(id)
 
   try {

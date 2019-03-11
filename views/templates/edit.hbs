@@ -1,5 +1,5 @@
 <h1>Hola soy pririnolas el perfil</h1>
-<form action="/profile/edit" method="POST">
+<form action="/profile/edit" method="POST" enctype="multipart/form-data">
    <div>
       <label for="">Name</label>
       <input type="text" name="name" value="{{name}}">
@@ -25,6 +25,12 @@
          <option value="trompeta">Trompeta</option>
          <option value="violin">Violín</option>
       </select>
+   
+   <div class="field img">
+      <label for="">Portada</label>
+      <input type="file" name="image-back">
+   </div>
+
    </div>
    <button type="submit">Guardar</button>
 </form>
