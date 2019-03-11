@@ -18,14 +18,15 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup', data);
 });
 
-router.post('/signup', requireAnon,  requireFields, uploadCloud.single('imageUrl'), async (req, res, next) => {
+router.post('/signup', requireAnon,   uploadCloud.single('image-back'), async (req, res, next) => {
   const { name, mail, password, header, description, category } = req.body;
-  const { imageUrl } = req.file.url
+  const { url: imageUrl } = req.file
   try {
     const result = await User.findOne({ name });
     if (result) {
       req.flash('validation', 'This name is taken');
       res.redirect('/auth/signup');
+      console.log('No hago el signup')
       return;
     }
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -36,6 +37,7 @@ router.post('/signup', requireAnon,  requireFields, uploadCloud.single('imageUrl
     };
     const createUser = await User.create(newUser);
     req.session.currentUser = createUser;
+    console.log('no redirijo ni guardo en la bd')
     res.redirect('/');
   } catch (error) {
     next(error);
@@ -54,8 +56,9 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
   try {
     const user = await User.findOne({ mail });
     if (!user) {
-      req.flash('validation', 'User name or password are incorrect we are the world');
+      req.flash('validation', 'User name or password are incorrect');
       res.redirect('/auth/login');
+      console.log('No hace en login')
       return;
     }
 
@@ -63,8 +66,10 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
       req.session.currentUser = user;
       res.redirect('/categories');
     } else {
-      req.flash('Validation', 'Username or password are incorrect we are the world');
+      
+      req.flash('Validation', 'Username or password are incorrect');
       res.redirect('/auth/login');
+      console.log('entro aqui')
     }
   } catch (error) {
     next(error);
