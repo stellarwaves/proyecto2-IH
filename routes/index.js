@@ -15,7 +15,7 @@ router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
 
-router.get('/list', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
+router.get('/list', requireUser,  uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const instrument = req.query.id
   try {
     // if (req.session.currentUser) {
@@ -30,7 +30,7 @@ router.get('/list', requireUser, uploadCloud.single('image-back'), async (req, r
   }
 })
 
-router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
+router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { id } = req.params
 
   console.log(id)
@@ -42,7 +42,7 @@ router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), async (
   }
 })
 
-router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
+router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
@@ -52,11 +52,12 @@ router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), async
   }
 })
 
-router.post('/profile/edit', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
+router.post('/profile/edit', requireUser, /* uploadCloud.single('image-back'), */ uploadCloud.single('image-perfil'), async (req, res, next) => {
   const id = req.session.currentUser._id
-  const { url: imageUrl } = req.file
+  // const { url: imageUrl } = req.file
+  const { url: imageProfile } = req.file
   const { name, description, category } = req.body
-  const userProfile = { name, description, category, imageUrl }
+  const userProfile = { name, description, category, /* imageUrl, */ imageProfile }
   console.log(id)
 
   try {
