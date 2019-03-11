@@ -20,13 +20,13 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', requireAnon,   uploadCloud.single('image-back'), async (req, res, next) => {
   const { name, mail, password, header, description, category } = req.body;
-  const { url: imageUrl } = req.file
+  const { url: imageUrl } = req.file;
+  
   try {
     const result = await User.findOne({ name });
     if (result) {
       req.flash('validation', 'This name is taken');
       res.redirect('/auth/signup');
-      console.log('No hago el signup')
       return;
     }
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -37,7 +37,6 @@ router.post('/signup', requireAnon,   uploadCloud.single('image-back'), async (r
     };
     const createUser = await User.create(newUser);
     req.session.currentUser = createUser;
-    console.log('no redirijo ni guardo en la bd')
     res.redirect('/');
   } catch (error) {
     next(error);

@@ -25,6 +25,9 @@ const userSchema = new Schema({
   imageUrl: {
     type: String
   },
+  imageProfile:{
+    type: String
+  },
   description: {
     type: String
   },
