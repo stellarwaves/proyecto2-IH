@@ -4,6 +4,8 @@ const router = express.Router()
 const User = require('../models/User')
 const { requireUser } = require('../middlewares/auth');
 
+const uploadCloud = require('../config/cloudinary')
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Sing your talent' })
@@ -13,7 +15,7 @@ router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
 
-router.get('/list', requireUser, async (req, res, next) => {
+router.get('/list', requireUser,  uploadCloud.single('imageUrl'), async (req, res, next) => {
   const instrument = req.query.id
 
   try {
@@ -24,8 +26,9 @@ router.get('/list', requireUser, async (req, res, next) => {
   }
 })
 
-router.get('/detail/:id', requireUser, async (req, res, next) => {
+router.get('/detail/:id', requireUser, uploadCloud.single('imageUrl'), async (req, res, next) => {
   const { id } = req.params
+
   console.log(id)
   try {
     const profesor = await User.findById(id)

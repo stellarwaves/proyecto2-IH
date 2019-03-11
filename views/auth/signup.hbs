@@ -1,6 +1,6 @@
 <h1>Regístrate hola</h1>
 
-<form method="POST" action="/auth/signup">
+<form method="POST" action="/auth/signup" enctype="multipart/form-data">
    <div class="field">
       <label>Nombre</label>
       <input type="text" name="name">
@@ -44,6 +44,11 @@
          <option value="trompeta">Trompeta</option>
          <option value="violin">Violín</option>
       </select>
+   </div>
+
+   <div class="field img">
+      <label for="">Portada</label>
+      <input type="file" name="imageUrl">
    </div>
 
    <div class="field submit">

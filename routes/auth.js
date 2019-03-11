@@ -7,6 +7,8 @@ const User = require('../models/User');
 
 const { requireAnon, requireUser, requireFields } = require('../middlewares/auth');
 
+const uploadCloud = require('../config/cloudinary')
+
 const saltRounds = 10;
 
 router.get('/signup', (req, res, next) => {
@@ -16,8 +18,9 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup', data);
 });
 
-router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
+router.post('/signup', requireAnon,  requireFields, uploadCloud.single('imageUrl'), async (req, res, next) => {
   const { name, mail, password, header, description, category } = req.body;
+  const { imageUrl } = req.file.url
   try {
     const result = await User.findOne({ name });
     if (result) {
@@ -29,7 +32,7 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     const newUser = {
-      name, mail, password: hashedPassword, header, description, category
+      name, mail, password: hashedPassword, header, description, category, imageUrl
     };
     const createUser = await User.create(newUser);
     req.session.currentUser = createUser;
