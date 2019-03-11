@@ -29,12 +29,11 @@ app.use(session({
 
 app.use(flash())
 // mongoose.connect(process.env.MONGODB_URI, {
-mongoose.connect('mongodb://localhost/miproyect', {
+mongoose.connect('mongodb://localhost/database-name', {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
-});
-  
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
