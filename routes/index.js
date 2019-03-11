@@ -15,10 +15,9 @@ router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
 
-router.get('/list', requireUser,  uploadCloud.single('image-back'), async (req, res, next) => {
+router.get('/list', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
   const instrument = req.query.id
   try {
-    
     // if (req.session.currentUser) {
     //   let category = req.session.currentUser.category;
     //   const products = await User.find({ instrument: { $ne: category } });

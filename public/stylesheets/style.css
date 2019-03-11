@@ -105,15 +105,15 @@ section{
   justify-content: space-between;
 }
 
-.user-form .field:nth-child(1){
+.user-form .field{
   margin: 0 0 10px 0;
 }
 
-.user-form .field:nth-child(2){
+.user-form .field.last:nth-child(2){
   margin: 0 0 40px 0;
 }
 
-.user-form .inputs{
+.user-form .inputs.login{
   margin-top: 60%;
 }
 
@@ -124,15 +124,19 @@ section{
   color: #717171;
 }
 
-.user-form .inputs .field input{
+.user-form .inputs .field input, .user-form .inputs .field select{
   padding: 15px;
   color: #9FA5AA;
   border: 1px solid #808080;
   border-radius: 50px;
   width: 100%;
   font-size: 1.063em;
+  background: #FFFFFF;
 }
 
+.user-form .inputs .field input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #C9D0D6;
+}
 
 .user-form .create-account{
   color: #8B959E;
@@ -144,7 +148,4 @@ section{
   color: #4295ff;
 }
 
-.user-form button{
-  margin-bottom: 50px;
-}
 
