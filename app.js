@@ -29,22 +29,12 @@ app.use(session({
 
 app.use(flash())
 
-<<<<<<< HEAD
-// mongoose.connect('mongodb://localhost/database-name', {
-//   keepAlive: true,
-//   useNewUrlParser: true,
-//   reconnectTries: Number.MAX_VALUE
-// });
+mongoose.connect('mongodb://localhost/database-name', {
+  keepAlive: true,
+  useNewUrlParser: true,
+  reconnectTries: Number.MAX_VALUE
+})
 
-=======
-// mongoose.connect(process.env.MONGODB_URI, {
-  mongoose.connect('mongodb://localhost/miproyect', {
-    keepAlive: true,
-    useNewUrlParser: true,
-    reconnectTries: Number.MAX_VALUE
-  });
-  
->>>>>>> 99bf2593ff00300a35794e15c4d3f6dd0cbec856
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
