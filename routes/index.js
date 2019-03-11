@@ -6,7 +6,7 @@ const { requireUser } = require('../middlewares/auth')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Sing your talent' })
+  res.render('index')
 })
 
 router.get('/categories', requireUser, (req, res, next) => {
