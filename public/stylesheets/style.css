@@ -158,6 +158,8 @@ section{
   color: #4295ff;
 }
 
+/* ---- Category ---- */
+
 .category-selection ul {
   display: flex;
   -webkit-flex-flow: row wrap;
@@ -180,6 +182,16 @@ section{
 
 .category-selection ul li a{
   text-decoration: none;
+}
+
+.category-selection ul li a img{
+  width: 60px;
+  margin: 25px auto 5px auto;
+}
+
+.category-selection ul li a p{
+  color: #4A4A4A;
+  font-size: 1em;
 }
 
 /* ---- MAP ---- */
