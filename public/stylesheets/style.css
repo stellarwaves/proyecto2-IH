@@ -27,6 +27,12 @@ section{
   height: 100vh;
 }
 
+.category-selection, 
+.form-section, 
+.teacher-list-section{
+  margin-top: 70px; 
+}
+
 /* ---- Buttons ---- */
 
 .btn{
@@ -71,6 +77,12 @@ section{
   height: 70px;
   display: flex;
   align-items: center;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background: #f7f7f9;
+  width: 100%;
+  border-bottom: 1px solid #eaebec;
 }
 
 .main-header h1{
@@ -201,11 +213,11 @@ section{
 }
 /* ---- Category list ---- */
 
-.teacher-list{
+.teacher-list-section{
   height: 100%;
 }
 
-.teacher-list ul li.lesson-card{
+.teacher-list-section ul li.lesson-card{
   height: 220px;
   width: 100%;
   margin: 20px 0;
