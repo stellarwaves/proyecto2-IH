@@ -147,5 +147,8 @@ section{
 .user-form .create-account a{
   color: #4295ff;
 }
-
-
+/* //mapa */
+#map{
+  height: 500px;
+  width: 500px;
+}
