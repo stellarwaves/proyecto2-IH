@@ -19,7 +19,7 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', requireAnon,   uploadCloud.single('image-back'), async (req, res, next) => {
-  const { name, mail, password, header, description, category } = req.body;
+  const { name, mail, password, header, description, category, longitude, latitude } = req.body;
   const { url: imageUrl } = req.file;
   
   try {
@@ -33,7 +33,17 @@ router.post('/signup', requireAnon,   uploadCloud.single('image-back'), async (r
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     const newUser = {
-      name, mail, password: hashedPassword, header, description, category, imageUrl
+      name,
+      mail, 
+      password: hashedPassword,
+      header,
+      description, 
+      category,
+      imageUrl,
+      location: {
+        type: 'Point',
+        coordinates: [longitude, latitude]
+      }
     };
     const createUser = await User.create(newUser);
     req.session.currentUser = createUser;

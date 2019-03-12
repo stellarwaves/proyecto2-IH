@@ -34,7 +34,14 @@ const userSchema = new Schema({
   category: {
     type: String,
     enum: ['acordeon', 'armonica', 'bajo', 'bateria', 'flauta', 'guitarra', 'maracas', 'piano', 'saxofon', 'trompeta', 'violin']
-  }
+  },
+  location: {
+    type: {
+      type: String,
+      default: 'Point'
+    },
+    coordinates: [Number]
+  },
 //   level: {
 //     type: String,
 //     enum: ['beginer', 'nice', 'master']
