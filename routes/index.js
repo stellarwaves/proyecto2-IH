@@ -33,8 +33,6 @@ router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.s
 
 router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { id } = req.params
-
-  console.log(id)
   try {
     const profesor = await User.findById(id)
     res.render('templates/detail', { profesor })
@@ -43,23 +41,25 @@ router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadC
   }
 })
 
-router.get('/:id/match', requireUser, async (req, res, next) => {
+router.get('/:id/match', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const _id = req.session.currentUser._id
+  const { id } = req.params
   try {
     const user = await Match.find({ student: { _id } })
-    console.log(user)
-    res.render('templates/match', user)
+    const teacher = await User.findById(id)
+    res.render('templates/match', { user, teacher })
   } catch (error) {
     next(error)
   }
 })
 router.post('/detail/:id/match', requireUser, async (req, res, next) => {
   const { id } = req.params
-
-  const student = req.session.currentUser._id
+console.log(id)
+  const {_id} = req.session.currentUser
+console.log(_id)  
   const myTeacher = {
     teacher: id,
-    student: student
+    student: _id
   }
 
   try {
