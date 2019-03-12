@@ -178,4 +178,8 @@ section{
   box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.18);
 }
 
+.category-selection ul li a{
+  text-decoration: none;
+}
+
 
