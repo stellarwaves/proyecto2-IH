@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const User = require('../models/User')
+const Match = require('../models/Match')
 const { requireUser } = require('../middlewares/auth')
 
 const uploadCloud = require('../config/cloudinary')
@@ -15,7 +16,7 @@ router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
 
-router.get('/list', requireUser,  uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
+router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const instrument = req.query.id
   try {
     // if (req.session.currentUser) {
@@ -37,6 +38,34 @@ router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadC
   try {
     const profesor = await User.findById(id)
     res.render('templates/detail', { profesor })
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:id/match', requireUser, async (req, res, next) => {
+  const _id = req.session.currentUser._id
+  try {
+    const user = await Match.find({ student: { _id } })
+    console.log(user)
+    res.render('templates/match', user)
+  } catch (error) {
+    next(error)
+  }
+})
+router.post('/detail/:id/match', requireUser, async (req, res, next) => {
+  const { id } = req.params
+
+  const student = req.session.currentUser._id
+  const myTeacher = {
+    teacher: id,
+    student: student
+  }
+
+  try {
+    const match = await Match.create(myTeacher)
+    console.log(match)
+    res.redirect(`/${id}/match`)
   } catch (error) {
     next(error)
   }

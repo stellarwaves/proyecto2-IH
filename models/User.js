@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 
 const userSchema = new Schema({
   name: {
@@ -25,7 +26,7 @@ const userSchema = new Schema({
   imageUrl: {
     type: String
   },
-  imageProfile:{
+  imageProfile: {
     type: String
   },
   description: {
@@ -42,6 +43,10 @@ const userSchema = new Schema({
     },
     coordinates: [Number]
   },
+  teacher: {
+    ref: 'User',
+    type: ObjectId
+  }
 //   level: {
 //     type: String,
 //     enum: ['beginer', 'nice', 'master']
