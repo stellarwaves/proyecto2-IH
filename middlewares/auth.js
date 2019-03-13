@@ -1,27 +1,27 @@
-'use strict';
+'use strict'
 
 module.exports = {
   requireAnon (req, res, next) {
     if (req.session.currentUser) {
-      res.redirect('/');
+      res.redirect('/')
       return;
     }
-    next();
+    next()
   },
   requireUser (req, res, next) {
     if (!req.session.currentUser) {
-      res.redirect('/');
+      res.redirect('/')
       return;
     }
-    next();
+    next()
   },
   requireFields (req, res, next) {
-    const { mail, password } = req.body;
+    const { mail, password } = req.body
     if (!mail || !password) {
-      req.flash('validation', 'Mail or password is missing');
-      res.redirect(`/auth${req.path}`);
+      req.flash('validation', 'Mail or password is missing')
+      res.redirect(`/auth${req.path}`)
       return;
     }
-    next();
+    next()
   }
-};
+}

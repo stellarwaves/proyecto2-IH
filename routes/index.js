@@ -41,12 +41,11 @@ router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadC
   }
 })
 
-
 router.post('/detail/:id', requireUser, async (req, res, next) => {
   const { id } = req.params
-// console.log(id)
-  const {_id} = req.session.currentUser
-// console.log(_id)  
+  // console.log(id)
+  const { _id } = req.session.currentUser
+  // console.log(_id)
   const myTeacher = {
     teacher: id,
     student: _id
@@ -62,20 +61,19 @@ router.post('/detail/:id', requireUser, async (req, res, next) => {
   }
 })
 
-
 router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const _id = req.session.currentUser._id
   // const { id } = req.params
   try {
     const user = await Match.find({ student: { _id } }).populate('teacher')
-  
+
     const myStudents = await Match.find({ teacher: { _id } }).populate('student')
-        
+
     res.render('templates/match', { user, myStudents })
   } catch (error) {
     next(error)
   }
-}) 
+})
 
 router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
@@ -87,22 +85,20 @@ router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), asy
   }
 })
 
-
-
 router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const id = req.session.currentUser._id
 
   const { url: imageProfile } = req.file
   const { name, longitude, latitude } = req.body
-  const userProfile = { 
+  const userProfile = {
     name,
-    imageProfile, 
+    imageProfile,
     location: {
       type: 'Point',
       coordinates: [longitude, latitude]
     }
   }
-  
+
   try {
     await User.findByIdAndUpdate(id, userProfile)
     res.redirect('/profile/edit/lesson')
@@ -126,13 +122,13 @@ router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'
   const { url: imageUrl } = req.file
 
   const { header, description, category } = req.body
-  const userProfileLesson = { 
-    header, 
-    description, 
-    category, 
-    imageUrl 
+  const userProfileLesson = {
+    header,
+    description,
+    category,
+    imageUrl
   }
-  
+
   try {
     await User.findByIdAndUpdate(id, userProfileLesson)
     res.redirect('/categories')
