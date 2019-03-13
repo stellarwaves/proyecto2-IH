@@ -41,22 +41,12 @@ router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadC
   }
 })
 
-router.get('/:id/match', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
-  const _id = req.session.currentUser._id
+
+router.post('/detail/:id', requireUser, async (req, res, next) => {
   const { id } = req.params
-  try {
-    const user = await Match.find({ student: { _id } })
-    const teacher = await User.findById(id)
-    res.render('templates/match', { user, teacher })
-  } catch (error) {
-    next(error)
-  }
-})
-router.post('/detail/:id/match', requireUser, async (req, res, next) => {
-  const { id } = req.params
-console.log(id)
+// console.log(id)
   const {_id} = req.session.currentUser
-console.log(_id)  
+// console.log(_id)  
   const myTeacher = {
     teacher: id,
     student: _id
@@ -64,12 +54,29 @@ console.log(_id)
 
   try {
     const match = await Match.create(myTeacher)
-    console.log(match)
-    res.redirect(`/${id}/match`)
+    // console.log(match)
+    /* res.redirect(`/${id}/match`) */
+    res.redirect('/categories')
   } catch (error) {
     next(error)
   }
 })
+
+
+router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
+  const _id = req.session.currentUser._id
+  const { id } = req.params
+  try {
+    const user = await Match.find({ student: { _id } }).populate('teacher')
+     console.log(user)
+    // const myTeachers = await Match.find({ student: { _id } }).populate('student')
+    // console.log(myTeachers)
+    // const teacher = await User.findById(user.teacher)
+    res.render('templates/match', { user })
+  } catch (error) {
+    next(error)
+  }
+}) 
 
 router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
