@@ -280,11 +280,22 @@ li.lesson-card .info-container p{
 
 .section-detail{
   margin-top: 70px;
+  padding: 0;
   height: 100%;
 }
 
 .section-detail .detail-top-img{
   width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.detail-info{
+  position: relative;
+  top: -62px;
+  background: #FFF;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
 }
 
 .detail-info .img-profile{
