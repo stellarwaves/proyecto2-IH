@@ -69,7 +69,7 @@ router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (r
 
     const myStudents = await Match.find({ teacher: { _id } }).populate('student')
 
-    res.render('templates/match', { user, myStudents })
+    res.render('templates/match', { user, myStudents, layout: 'layout-match' })
   } catch (error) {
     next(error)
   }

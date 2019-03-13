@@ -155,20 +155,21 @@ section{
  */
 #menu{
   top: 79px;
-  left: 30px;
+  left: 25px;
   position: absolute;
   width: 300px;
   height: 100vh;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  background: #ededed;
+  background: #ffffff;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  box-shadow: 0 0px 10px 2px #33333369;
 }
 
 #menu li{

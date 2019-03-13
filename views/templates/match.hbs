@@ -1,31 +1,32 @@
-<button onclick="misProfesores()">Mis profesores</button>
-<button onclick="misEstudiantes()">Mis estudiantes</button>
+<section>   
+   <button onclick="misProfesores()">Mis profesores</button>
+   <button onclick="misEstudiantes()">Mis estudiantes</button>
 
-<div id="profesores">
-<h1>Profesores</h1>
- {{#each user}}
-   <div>     
-      <p>Profesor de: {{this.teacher.category}}</p>
-      <p>{{this.teacher.name}}</p>
-      <img src="{{this.teacher.imageProfile}}" alt="">  
-      <p>{{this.teacher.description}}</p>
+   <div id="profesores">
+   <h1>Profesores</h1>
+   {{#each user}}
+      <div>     
+         <p>Profesor de: {{this.teacher.category}}</p>
+         <p>{{this.teacher.name}}</p>
+         <img src="{{this.teacher.imageProfile}}" alt="">  
+         <p>{{this.teacher.description}}</p>
+      </div>
+   
+   {{/each}} 
    </div>
- 
-{{/each}} 
-</div>
 
-<div id="estudiantes">
-   <h1>Estudiantes</h1>
- {{#each myStudents}}
-   <div>     
-      <p>Mi estudiante de: {{this.student.category}}</p>
-      <p>{{this.student.name}}</p>
-      <img src="{{this.student.imageProfile}}" alt="">  
-      <p>{{this.student.description}}</p>
+   <div id="estudiantes">
+      <h1>Estudiantes</h1>
+   {{#each myStudents}}
+      <div>     
+         <p>Mi estudiante de: {{this.student.category}}</p>
+         <p>{{this.student.name}}</p>
+         <img src="{{this.student.imageProfile}}" alt="">  
+         <p>{{this.student.description}}</p>
+      </div>
+   
+   {{/each}} 
    </div>
- 
-{{/each}} 
-
-</div>
+</section>
 
 <script src="/javascripts/matches.js"></script>
