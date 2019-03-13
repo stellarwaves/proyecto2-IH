@@ -18,9 +18,9 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup', data)
 })
 
-router.post('/signup', requireAnon, uploadCloud.single('image-back'), async (req, res, next) => {
-  const { name, mail, password, header, description, category, longitude, latitude } = req.body
-  const { url: imageUrl } = req.file
+router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (req, res, next) => {
+  const { name, mail, password, category, longitude, latitude } = req.body
+  const { url: imageProfile } = req.file
 
   try {
     const result = await User.findOne({ name })
@@ -36,10 +36,8 @@ router.post('/signup', requireAnon, uploadCloud.single('image-back'), async (req
       name,
       mail,
       password: hashedPassword,
-      header,
-      description,
       category,
-      imageUrl,
+      imageProfile,
       location: {
         type: 'Point',
         coordinates: [longitude, latitude]
@@ -47,7 +45,7 @@ router.post('/signup', requireAnon, uploadCloud.single('image-back'), async (req
     }
     const createUser = await User.create(newUser)
     req.session.currentUser = createUser
-    res.redirect('/')
+    res.redirect('/login')
   } catch (error) {
     next(error)
   }

@@ -21,7 +21,7 @@ const userSchema = new Schema({
   },
   header: {
     type: String,
-    required: true
+    
   },
   imageUrl: {
     type: String
