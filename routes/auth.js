@@ -15,7 +15,7 @@ router.get('/signup', (req, res, next) => {
   const data = {
     message: req.flash('validation')
   }
-  res.render('auth/signup', data)
+  res.render('auth/signup', { layout: 'layout-fullpage', data })
 })
 
 router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (req, res, next) => {
@@ -55,7 +55,7 @@ router.get('/login', requireAnon, (req, res, next) => {
   const data = {
     message: req.flash('validation')
   }
-  res.render('auth/login', data)
+  res.render('auth/login', { layout: 'layout-fullpage', data })
 })
 
 router.post('/login', requireAnon, requireFields, async (req, res, next) => {
