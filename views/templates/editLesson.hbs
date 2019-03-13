@@ -1,10 +1,11 @@
-<h1>Hola soy pririnolas el perfil</h1>
-<form action="/profile/edit" method="POST" enctype="multipart/form-data">
-   <div>
-      <label for="">Name</label>
-      <input type="text" name="name" value="{{name}}">
+<h1>Editar Lección</h1>
+
+<form action="/profile/edit/lesson" method="POST" enctype="multipart/form-data">
+  <div>
+      <label for="">Titulo</label>
+      <input type="text" name="header" value="{{header}}">
    </div>
-    {{!-- <div>
+   <div>
       <label for="">Description</label>
       <input type="text" name="description" value="{{description}}">
    </div>
@@ -25,36 +26,16 @@
          <option value="trompeta">Trompeta</option>
          <option value="violin">Violín</option>
       </select>
-    --}}
-   {{!-- <div class="field img">
+ 
+  <div class="field img">
       <label for="">Portada</label>
       <input type="file" name="image-back">
    </div>
-  --}}
-   <div class="field img">
-      <label for="">Perfil</label>
-      <input type="file" name="image-perfil">
-   </div>
 
-         {{!-- //localización --}}
-         <div>
-            <label for="latitude">Latitude</label>
-            <input type="text" id="latitude" name="latitude">
-         </div>
+<button type="submit">Guardar</button>
 
-         <div>
-            <label for="longitude">Longitude</label>
-            <input type="text" id="longitude" name="longitude">
-         </div>
+</form> 
 
-
-
-   </div>
-   <button type="submit">Guardar</button>
-
-   <script src="/javascripts/location.js"></script>
-</form>
-
-<form action="/profile/delete" method="POST">
+ <form action="/profile/delete" method="POST">
    <button type="submit">Borrar</button>
 </form>

@@ -42,11 +42,11 @@ const userSchema = new Schema({
       default: 'Point'
     },
     coordinates: [Number]
-  },
-  teacher: {
-    ref: 'User',
-    type: ObjectId
   }
+  // teacher: {
+  //   ref: 'User',
+  //   type: ObjectId
+  // }
 //   level: {
 //     type: String,
 //     enum: ['beginer', 'nice', 'master']

@@ -65,20 +65,19 @@ router.post('/detail/:id', requireUser, async (req, res, next) => {
 
 router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const _id = req.session.currentUser._id
-  const { id } = req.params
+  // const { id } = req.params
   try {
     const user = await Match.find({ student: { _id } }).populate('teacher')
-     console.log(user)
-    // const myTeachers = await Match.find({ student: { _id } }).populate('student')
-    // console.log(myTeachers)
-    
-    res.render('templates/match', { user })
+  
+    const myStudents = await Match.find({ teacher: { _id } }).populate('student')
+        
+    res.render('templates/match', { user, myStudents })
   } catch (error) {
     next(error)
   }
 }) 
 
-router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
+router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
@@ -88,31 +87,15 @@ router.get('/profile/edit', requireUser, uploadCloud.single('image-back'), uploa
   }
 })
 
-// router.post('/profile/edit', requireUser, /* uploadCloud.single('image-back'), */ uploadCloud.single('image-perfil'), async (req, res, next) => {
-//   const id = req.session.currentUser._id
-//   // const { url: imageUrl } = req.file
-//   const { url: imageProfile } = req.file
-//   const { name, description, category } = req.body
-//   const userProfile = { name, description, category, /* imageUrl, */ imageProfile }
-//   console.log(id)
 
-//   try {
-//     await User.findByIdAndUpdate(id, userProfile)
-//     res.redirect('/categories')
-//   } catch (error) {
-//     next(error)
-//   }
-// })
 
-router.post('/profile/edit', requireUser, /* uploadCloud.single('image-back'), */ uploadCloud.single('image-perfil'), async (req, res, next) => {
+router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const id = req.session.currentUser._id
-  // const { url: imageUrl } = req.file
+
   const { url: imageProfile } = req.file
-  const { name, description, category, longitude, latitude } = req.body
+  const { name, longitude, latitude } = req.body
   const userProfile = { 
     name,
-    description,
-    category, /* imageUrl, */ 
     imageProfile, 
     location: {
       type: 'Point',
@@ -122,6 +105,36 @@ router.post('/profile/edit', requireUser, /* uploadCloud.single('image-back'), *
   
   try {
     await User.findByIdAndUpdate(id, userProfile)
+    res.redirect('/profile/edit/lesson')
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/profile/edit/lesson', requireUser, async (req, res, next) => {
+  const { _id } = req.session.currentUser
+  try {
+    const profile = await User.findById(_id)
+    res.render('templates/editLesson', profile)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
+  const id = req.session.currentUser._id
+  console.log(req.body)
+  const { url: imageUrl } = req.file
+
+  const { header, description, category } = req.body
+  const userProfileLesson = { 
+    header, 
+    description, 
+    category, 
+    imageUrl 
+  }
+  
+  try {
+    await User.findByIdAndUpdate(id, userProfileLesson)
     res.redirect('/categories')
   } catch (error) {
     next(error)

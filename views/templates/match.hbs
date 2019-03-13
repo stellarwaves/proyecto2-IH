@@ -1,4 +1,5 @@
-<h1>has hecho match</h1>
+<div class="" id="profesores">
+<h1>Profesores</h1>
  {{#each user}}
    <div>     
       <p>Profesor de: {{this.teacher.category}}</p>
@@ -8,4 +9,19 @@
    </div>
  
 {{/each}} 
+</div>
+<div class="" id="estudiantes">
+   <h1>Estudiantes</h1>
+ {{#each myStudents}}
+   <div>     
+      <p>Mi estudiante de: {{this.student.category}}</p>
+      <p>{{this.student.name}}</p>
+      <img src="{{this.student.imageProfile}}" alt="">  
+      <p>{{this.student.description}}</p>
+   </div>
+ 
+{{/each}} 
 
+</div>
+
+<script src="/javascripts/matches.js"></script>
