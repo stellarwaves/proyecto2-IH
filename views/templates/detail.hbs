@@ -1,20 +1,31 @@
-<h1>{{profesor.header}}</h1>
-<p>Soy tu profesor y me llamo{{profesor.name}} y toco muy bien el instrumento {{profesor.category}}</p>
-<p>{{profesor.description}}</p>
-<p>{{profesor.mail}}</p>
-<img src="{{profesor.imageUrl}}" alt="image-background">
-<img src="{{profesor.imageProfile}}" alt="profile-image">
+<header class="main-header">
+   <h1>Sign Up</h1>
+</header>
+<section class="section-detail">
+   <img class="detail-top-img" src="{{profesor.imageUrl}}" alt="image-background">
+   <div class="detail-info">
+      <h1>{{profesor.header}}</h1>
+      <img class="img-profile" src="{{profesor.imageProfile}}" alt="profile-image">
+      
+      <p>{{profesor.description}}</p>
+      <p>{{profesor.mail}}</p>
 
-{{!-- //localización --}}
 
-<p class="coordinates">{{profesor.location.coordinates}}</p>
+      {{!-- //localización --}}
+      {{!-- <p class="coordinates">{{profesor.location.coordinates}}</p> --}}
+      <div class="map-detail" id="map"></div>
+   </div>
 
-<div id="map"></div>
+   
+   
 
-<form action="/detail/{{profesor._id}}" method="post">
-   <button  class= "btn btn-primary" type="submit">Teach Me</button>
-</form>
 
+  
+
+   <form action="/detail/{{profesor._id}}" method="post">
+      <button  class= "btn btn-primary" type="submit">Teach Me</button>
+   </form>
+</section>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
