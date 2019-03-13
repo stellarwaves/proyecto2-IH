@@ -9,7 +9,7 @@ const uploadCloud = require('../config/cloudinary')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index')
+  res.render('index', { layout: 'layout-fullpage' })
 })
 
 router.get('/categories', requireUser, (req, res, next) => {

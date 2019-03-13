@@ -8,13 +8,15 @@
   <title>{{title}}</title>
 </head>
 <body>
+  <header class="main-header">
+    {{> nav}}
+   <h1>Lesson detail</h1>
+</header>
   {{{body}}}
 </body>
 </html>
 
-<form action="/auth/logout" method="POST">
-  <button class="logout-button" type="submit">Logout</button>
-</form>
+
   {{!-- <nav class="main-nav">
     {{#if currentUser}}
       <div>
