@@ -460,6 +460,28 @@ li.lesson-card .info-container p{
   height: 100%;
 }
 
+.profile-section .tabs{
+  margin: 10px 0 40px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile-section .tabs button{
+  padding: 15px 0;
+  width: 45%;
+  border-radius: 50px;
+  border: 0;
+  font-size: 1em;
+  background: transparent;
+  border: 2px solid #85bbfd;
+  color: #85bbfd;
+}
+
+.profile-section .tabs button.active{
+  color: #fff;
+  background: #85bbfe;
+}
+
 .match-card{
   width: 100%;
   margin: 20px 0;
@@ -476,13 +498,14 @@ li.lesson-card .info-container p{
 }
 
 .info-teacher .img-profile{
-  width: 53px;
-  height: 53px;
+  width: 55px;
+  height: 55px;
   margin-right: 10px;
   border-radius: 100%;
   overflow: hidden;
-  border: 2px solid #4295ff;
+  border: 2px solid #85bbff;
   object-fit: cover;
+  padding: 3px;
 }
 
 .info-teacher .teacher-name h3{

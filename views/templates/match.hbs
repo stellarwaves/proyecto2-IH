@@ -1,9 +1,11 @@
-<section class="profile-section">   
-   <button onclick="misProfesores()">Mis profesores</button>
-   <button onclick="misEstudiantes()">Mis estudiantes</button>
+<section class="profile-section"> 
+  
+   <div class="tabs"  onclick="myFunction(event)">  
+      <button class="btn-tab active" onclick="misProfesores()">My teachers</button>
+      <button class="btn-tab" onclick="misEstudiantes()">My students</button>
+   </div>
 
    <div id="profesores">
-      <h1>Profesores</h1>
       {{#each user}}
          <div class="match-card">
             <div class="info-teacher">
@@ -23,7 +25,6 @@
    </div>
 
    <div id="estudiantes">
-      <h1>Estudiantes</h1>
       {{#each myStudents}}
          <div class="match-card"> 
             <div class="info-teacher">    
