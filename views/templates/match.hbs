@@ -1,4 +1,7 @@
-<div class="" id="profesores">
+<button onclick="misProfesores()">Mis profesores</button>
+<button onclick="misEstudiantes()">Mis estudiantes</button>
+
+<div id="profesores">
 <h1>Profesores</h1>
  {{#each user}}
    <div>     
@@ -10,7 +13,8 @@
  
 {{/each}} 
 </div>
-<div class="" id="estudiantes">
+
+<div id="estudiantes">
    <h1>Estudiantes</h1>
  {{#each myStudents}}
    <div>     
