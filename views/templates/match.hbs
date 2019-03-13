@@ -1,32 +1,47 @@
-<section>   
+<section class="profile-section">   
    <button onclick="misProfesores()">Mis profesores</button>
    <button onclick="misEstudiantes()">Mis estudiantes</button>
 
    <div id="profesores">
-   <h1>Profesores</h1>
-   {{#each user}}
-      <div>     
-         <p>Profesor de: {{this.teacher.category}}</p>
-         <p>{{this.teacher.name}}</p>
-         <img src="{{this.teacher.imageProfile}}" alt="">  
-         <p>{{this.teacher.description}}</p>
-      </div>
-   
-   {{/each}} 
+      <h1>Profesores</h1>
+      {{#each user}}
+         <div class="match-card">
+            <div class="info-teacher">
+               <img class="img-profile" src="{{this.teacher.imageProfile}}" alt="">
+               <div class="teacher-name">  
+                  <h3>{{this.teacher.name}}</h3>
+                  <p>Profesor de: {{this.teacher.category}}</p>
+               </div>
+            </div>
+            <p>{{this.teacher.description}}</p>
+            <div class="match-footer">
+               <button class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
+               <button class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+            </div>
+         </div>
+      {{/each}} 
    </div>
 
    <div id="estudiantes">
       <h1>Estudiantes</h1>
-   {{#each myStudents}}
-      <div>     
-         <p>Mi estudiante de: {{this.student.category}}</p>
-         <p>{{this.student.name}}</p>
-         <img src="{{this.student.imageProfile}}" alt="">  
-         <p>{{this.student.description}}</p>
+      {{#each myStudents}}
+         <div class="match-card"> 
+            <div class="info-teacher">    
+               <img class="img-profile" src="{{this.student.imageProfile}}" alt="">  
+               <div class="teacher-name">  
+                  <h3>{{this.student.name}}</h3>
+                  <p>Estudiante de: {{this.student.category}}</p>
+               </div>
+            </div>
+            <p>{{this.student.description}}</p>
+            <div class="match-footer">
+               <button class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
+               <button class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+            </div>
+         </div>
+      
+      {{/each}} 
       </div>
-   
-   {{/each}} 
-   </div>
 </section>
 
 <script src="/javascripts/matches.js"></script>
