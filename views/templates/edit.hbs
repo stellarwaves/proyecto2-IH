@@ -36,8 +36,23 @@
       <input type="file" name="image-perfil">
    </div>
 
+         {{!-- //localización --}}
+         <div>
+            <label for="latitude">Latitude</label>
+            <input type="text" id="latitude" name="latitude">
+         </div>
+
+         <div>
+            <label for="longitude">Longitude</label>
+            <input type="text" id="longitude" name="longitude">
+         </div>
+
+
+
    </div>
    <button type="submit">Guardar</button>
+
+   <script src="/javascripts/location.js"></script>
 </form>
 
 <form action="/profile/delete" method="POST">

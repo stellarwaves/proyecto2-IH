@@ -1,6 +1,7 @@
 <h1>has hecho match</h1>
  {{#each user}}
    <div>     
+      <p>Profesor de: {{this.teacher.category}}</p>
       <p>{{this.teacher.name}}</p>
       <img src="{{this.teacher.imageProfile}}" alt="">  
       <p>{{this.teacher.description}}</p>
