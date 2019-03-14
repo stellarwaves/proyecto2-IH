@@ -116,19 +116,21 @@ router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), as
   const id = req.session.currentUser._id
 
   // const { url: imageProfile } = req.file
-  const { longitude, latitude } = req.body
+  const { longitude, latitude, name } = req.body
   const userProfile = {
-
     location: {
       type: 'Point',
       coordinates: [longitude, latitude]
-    }
+    },
+    name
   }
   if (req.file) {
     userProfile.imageProfile = req.file.url
   }
   try {
-    await User.findByIdAndUpdate(id, userProfile)
+    const updatedUser = await User.findByIdAndUpdate(id, userProfile, { new: true })
+    req.session.currentUser = updatedUser
+
     res.redirect('/profile')
   } catch (error) {
     next(error)

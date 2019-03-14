@@ -21,11 +21,11 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { name, mail, password, category } = req.body
   // const { url: imageProfile } = req.file
-  let imageProfile;
+  let imageProfile
   let longitude = 41.154878
   let latitude = 2.14246
-  if(req.file){
-   imageProfile = '/images/perfilDefecto.png'; 
+  if (req.file) {
+    imageProfile = '/images/perfilDefecto.png'
   }
   try {
     const result = await User.findOne({ name })
@@ -61,22 +61,22 @@ router.get('/login', requireAnon, (req, res, next) => {
     messages: req.flash('validation')
   }
   console.log(data)
-  res.render('auth/login',  data )
+  res.render('auth/login', data)
 })
 
 router.post('/login', requireAnon, requireFields, async (req, res, next) => {
   const { mail, password } = req.body
- 
-  if (!mail|| !password) {
+
+  if (!mail || !password) {
     res.redirect('/auth/login')
-  return
+    return
   }
   try {
     const user = await User.findOne({ mail })
     if (!user) {
       req.flash('validation', 'User name or password are incorrect')
       res.redirect('/auth/login')
-      
+
       return
     }
 
