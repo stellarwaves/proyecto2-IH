@@ -33,6 +33,11 @@ section{
   margin-top: 70px; 
 }
 
+/* Corregir, fix momentaneo */
+.height-100{
+  height: 100% !important;
+}
+
 /* ---- Buttons ---- */
 
 .btn{
@@ -65,9 +70,11 @@ section{
   width: 100%;
   margin: 40px 0 0 0;
   padding: 20px;
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #F993AC;
+  border: 0;
+  background: transparent;
 }
 
 .logout-button{
@@ -76,6 +83,8 @@ section{
   padding: 0;
   margin: 0;
   color: #4A4A4A;
+  border: 0;
+  background: transparent;
 }
 
 /* --- Menu toggle --- */

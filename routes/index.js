@@ -120,7 +120,7 @@ router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), as
   // const { url: imageProfile } = req.file
   const { longitude, latitude } = req.body
   const userProfile = {
-    
+
     location: {
       type: 'Point',
       coordinates: [longitude, latitude]
@@ -141,7 +141,7 @@ router.get('/profile/edit/lesson', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
-    res.render('templates/editLesson', { profile, title: 'Edit your lesson' })
+    res.render('templates/editLesson', { profile, title: 'Create a lesson' })
   } catch (error) {
     next(error)
   }
@@ -157,11 +157,11 @@ router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'
   const userProfileLesson = {
     header,
     description,
-    category,
+    category
     // imageUrl
   }
-  if(req.file){
-   userProfileLesson.imageUrl = req.file.url;
+  if (req.file) {
+    userProfileLesson.imageUrl = req.file.url
   }
   try {
     await User.findByIdAndUpdate(id, userProfileLesson)
