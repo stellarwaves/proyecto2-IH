@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-{{!-- {{!-- 
-<section>   
-   <button onclick="misProfesores()">Mis profesores</button>
-   <button onclick="misEstudiantes()">Mis estudiantes</button>
-=======
 <section class="profile-section"> 
   
    <div class="tabs"  onclick="myFunction(event)">  
       <button class="btn-tab active" onclick="misProfesores()">My teachers</button>
       <button class="btn-tab" onclick="misEstudiantes()">My students</button>
    </div>
->>>>>>> 5cabeb19742f05b40bc1d39dd4459c783e50b6e1
 
    <div id="profesores">
       {{#each user}}
@@ -23,9 +16,9 @@
                </div>
             </div>
             <p>{{this.teacher.description}}</p>
+             
             <div class="match-footer">
-               <button class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
-               <button class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+               <p>{{this.state}}</p> 
             </div>
          </div>
       {{/each}} 
@@ -43,8 +36,8 @@
             </div>
             <p>{{this.student.description}}</p>
             <div class="match-footer">
-               <button class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
-               <button class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+               <a href="/profile/{{this.student._id}}/accept" class="btn-match accept"><i class="fas fa-check"></i> Accept</a>
+               <a href="/profile/{{this.student._id}}/decline" class="btn-match decline"><i class="fas fa-times"></i> Decline</a>
             </div>
          </div>
       
@@ -53,44 +46,10 @@
 </section>
 
 <script src="/javascripts/matches.js"></script>
- --}}
-<section>   
-   <button onclick="misProfesores()">Mis profesores</button>
-   <button onclick="misEstudiantes()">Mis estudiantes</button>
-
-
-   <div id="profesores">
-   <h1>Profesores</h1>
-   {{#each user}}
+ 
+ 
    {{!--  {{#each myTeacherState}} --}}
-      <div>     
-         <p>Profesor de: {{this.teacher.category}}</p>
-         <p>{{this.teacher.name}}</p>
-         <img src="{{this.teacher.imageProfile}}" alt="">  
-         <p>{{this.teacher.description}}</p>
-         <p>{{this.state}}</p>
-      </div>
-    {{!-- {{/each}} --}}
-   {{/each}} 
-   </div>
-
-   <div id="estudiantes">
-      <h1>Estudiantes</h1>
-   {{#each myStudents}}
+      
     {{!-- {{#each myStudentState}} --}}
-	<p>El estudiante: {{this.student.name}} te ha solicitado.</p> 
-      <div>     
-         <p>Mi estudiante de: {{this.student.category}}</p>
-         <p>{{this.student.name}}</p>
-         <img src="{{this.student.imageProfile}}" alt="">  
-         <p>{{this.student.description}}</p>
-         <p>{{this.state}}</p>
-	      <a class="button button--small" href="/profile/message/{{this.student._id}}/accept">Aceptar</a>
-         <a class="button button--delete button--small" href="/profile/message/{{this.student._id}}/decline">Rechazar</a>
-      </div>
-    {{!-- {{/each}} --}}
-   {{/each}} 
-   </div>
-</section>
+	      
 
-<script src="/javascripts/matches.js"></script>
