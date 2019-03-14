@@ -11,31 +11,29 @@ const uploadCloud = require('../config/cloudinary')
 router.get('/', (req, res, next) => {
   res.render('index', { layout: 'layout-fullpage' })
 })
-//pagina de las categorias
+
+// pagina de las categorias
 router.get('/categories', requireUser, (req, res, next) => {
-  res.render('templates/categories')
+  res.render('templates/categories', { title: 'Great time to learn' })
 })
-//Lista de los profesores
+
+// Lista de los profesores
 router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const instrument = req.query.id
   try {
-    // if (req.session.currentUser) {
-    //   let category = req.session.currentUser.category;
-    //   const products = await User.find({ instrument: { $ne: category } });
-    //   res.render('templates/list', { products });
-    // }
     const users = await User.find({ 'category': instrument })
-    res.render('templates/list', { users, title: instrument })
+    res.render('templates/list', { users, title: `${instrument} teachers` })
   } catch (error) {
     next(error)
   }
 })
-//detalle de los profesores
+
+// detalle de los profesores
 router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { id } = req.params
   try {
     const profesor = await User.findById(id)
-    res.render('templates/detail', { profesor })
+    res.render('templates/detail', { profesor, title: 'The teacher' })
   } catch (error) {
     next(error)
   }
@@ -60,77 +58,54 @@ router.post('/detail/:id', requireUser, async (req, res, next) => {
     next(error)
   }
 })
-//Match
-// router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
-//   const _id = req.session.currentUser._id
-//   // const { id } = req.params
-  
-//   try {
-//     const user = await Match.find({ student: { _id } }).populate('teacher')
 
-//     const myStudents = await Match.find({ teacher: { _id } }).populate('student')
-
-//     res.render('templates/match', { user, myStudents, layout: 'layout-match' })
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-//Matches
+// Matches
 router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const _id = req.session.currentUser._id
   // const { id } = req.params
-  
+
   try {
-   const user = await Match.find({ student: { _id } }).populate('teacher')
+    const user = await Match.find({ student: { _id } }).populate('teacher')
 
-   const myStudents = await Match.find({ teacher: { _id } }).populate('student')
+    const myStudents = await Match.find({ teacher: { _id } }).populate('student')
 
-  //  const myStudentState = myStudents.filter((student) => {
-  //   return student.state === 'Pendiente';
-  //  });
-  //  console.log(myStudentState)
-  //  const myTeacherState = user.filter((teacher) => {
-  //   return teacher.state === 'Aceptado';
-  //  });
-  //  console.log(myTeacherState)
-
-    res.render('templates/match', { user, myStudents, layout: 'layout-match' })
+    res.render('templates/match', { user, myStudents, layout: 'layout-match', title: 'My profile' })
   } catch (error) {
     next(error)
   }
 })
-//El Profesor a aceptado
 
+// El Profesor a aceptado
 router.post('/profile/:id/accept', async (req, res, next) => {
   try {
-    const { id } = req.params;
-    await Match.findOneAndUpdate({ student: id}, {$set: { state: 'Aceptado' }});
+    const { id } = req.params
+    await Match.findOneAndUpdate({ student: id }, { $set: { state: 'Aceptado' } })
     console.log(id)
-  
-    res.redirect('/profile');
+
+    res.redirect('/profile')
   } catch (error) {
-    next(error);
+    next(error)
   }
-});
+})
 
 // El profesor a declinado
 router.post('/profile/:id/decline', async (req, res, next) => {
   try {
-    const { id } = req.params;
-    await Match.findOneAndDelete({ student: id}, {$set: { state: 'Aceptado' }});
+    const { id } = req.params
+    await Match.findOneAndDelete({ student: id }, { $set: { state: 'Aceptado' } })
 
-    res.redirect('/profile');
+    res.redirect('/profile')
   } catch (error) {
-    next(error);
+    next(error)
   }
-});
+})
 
-//Editar el perfil de usuario
+// Editar el perfil de usuario
 router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
-    res.render('templates/edit', profile)
+    res.render('templates/edit', { profile, title: 'Edit profile' })
   } catch (error) {
     next(error)
   }
@@ -162,12 +137,13 @@ router.get('/profile/edit/lesson', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
     const profile = await User.findById(_id)
-    res.render('templates/editLesson', profile)
+    res.render('templates/editLesson', { profile, title: 'Edit your lesson' })
   } catch (error) {
     next(error)
   }
 })
-//Editar las lecciones del usuario
+
+// Editar las lecciones del usuario
 router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
   const id = req.session.currentUser._id
   console.log(req.body)
@@ -188,7 +164,8 @@ router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'
     next(error)
   }
 })
-//Borrar el perfil
+
+// Borrar el perfil
 router.post('/profile/delete', requireUser, async (req, res, next) => {
   const id = req.session.currentUser._id
   try {
