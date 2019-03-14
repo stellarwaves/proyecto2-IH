@@ -12,6 +12,11 @@ const matchSchema = new Schema({
   student: {
     type: ObjectId,
     ref: 'User'
+  },
+  state: {
+    type: String,
+    enum: ['Aceptado', 'Denegado','Pendiente'],
+    default: 'Pendiente'
   }
 })
 

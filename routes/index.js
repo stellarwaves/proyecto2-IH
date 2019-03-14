@@ -11,11 +11,11 @@ const uploadCloud = require('../config/cloudinary')
 router.get('/', (req, res, next) => {
   res.render('index', { layout: 'layout-fullpage' })
 })
-
+//pagina de las categorias
 router.get('/categories', requireUser, (req, res, next) => {
   res.render('templates/categories')
 })
-
+//Lista de los profesores
 router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const instrument = req.query.id
   try {
@@ -30,7 +30,7 @@ router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.s
     next(error)
   }
 })
-
+//detalle de los profesores
 router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { id } = req.params
   try {
@@ -60,21 +60,71 @@ router.post('/detail/:id', requireUser, async (req, res, next) => {
     next(error)
   }
 })
+//Match
+// router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
+//   const _id = req.session.currentUser._id
+//   // const { id } = req.params
+  
+//   try {
+//     const user = await Match.find({ student: { _id } }).populate('teacher')
 
+//     const myStudents = await Match.find({ teacher: { _id } }).populate('student')
+
+//     res.render('templates/match', { user, myStudents, layout: 'layout-match' })
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+//Matches
 router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const _id = req.session.currentUser._id
   // const { id } = req.params
+  
   try {
-    const user = await Match.find({ student: { _id } }).populate('teacher')
+   const user = await Match.find({ student: { _id } }).populate('teacher')
 
-    const myStudents = await Match.find({ teacher: { _id } }).populate('student')
+   const myStudents = await Match.find({ teacher: { _id } }).populate('student')
 
-    res.render('templates/match', { user, myStudents, layout: 'layout-match' })
+  //  const myStudentState = myStudents.filter((student) => {
+  //   return student.state === 'Pendiente';
+  //  });
+  //  console.log(myStudentState)
+  //  const myTeacherState = user.filter((teacher) => {
+  //   return teacher.state === 'Aceptado';
+  //  });
+  //  console.log(myTeacherState)
+
+    res.render('templates/match', { user, myStudents, layout: 'layout-fullpage' })
   } catch (error) {
     next(error)
   }
 })
+//El Profesor a aceptado
 
+router.get('/profile/message/:id/accept', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Match.findByIdAndUpdate(id, { state: 'Aceptado' });
+	
+    res.redirect('/profile');
+  } catch (error) {
+    next(error);
+  }
+});
+
+// El profesor a declinado
+router.get('/profile/message/:id/decline', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Match.findByIdAndDelete({id});
+
+    res.redirect('/profile');
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Editar el perfil de usuario
 router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
@@ -101,7 +151,8 @@ router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), as
 
   try {
     await User.findByIdAndUpdate(id, userProfile)
-    res.redirect('/profile/edit/lesson')
+    // res.redirect('/profile/edit/lesson')
+    res.redirect(`/detail/${id}`)
   } catch (error) {
     next(error)
   }
@@ -115,7 +166,7 @@ router.get('/profile/edit/lesson', requireUser, async (req, res, next) => {
     next(error)
   }
 })
-
+//Editar las lecciones del usuario
 router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'), async (req, res, next) => {
   const id = req.session.currentUser._id
   console.log(req.body)
@@ -136,7 +187,7 @@ router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'
     next(error)
   }
 })
-
+//Borrar el perfil
 router.post('/profile/delete', requireUser, async (req, res, next) => {
   const id = req.session.currentUser._id
   try {
