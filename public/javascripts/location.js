@@ -18,7 +18,7 @@ const main = () => {
     longitudeInputElement.value = longitude;
 
     const submitButtonElement = document.querySelector('form.user-form');
-    submitButtonElement.removeAttribute('disabled');
+    // submitButtonElement.removeAttribute('disabled');
   }
 
   function error (error) {

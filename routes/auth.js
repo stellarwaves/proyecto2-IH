@@ -20,9 +20,12 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { name, mail, password, category } = req.body
-  const { url: imageProfile } = req.file
+  // const { url: imageProfile } = req.file
   const longitude = 41.154878
   const latitude = 2.14246
+  if(req.file){
+    imageProfile = '/images/perfilDefecto.png';
+  }
   try {
     const result = await User.findOne({ name })
     if (result) {
@@ -54,19 +57,25 @@ router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (r
 
 router.get('/login', requireAnon, (req, res, next) => {
   const data = {
-    message: req.flash('validation')
+    messages: req.flash('validation')
   }
-  res.render('auth/login', { layout: 'layout-fullpage', data })
+  console.log(data)
+  res.render('auth/login',  data )
 })
 
 router.post('/login', requireAnon, requireFields, async (req, res, next) => {
   const { mail, password } = req.body
+ 
+  if (!mail|| !password) {
+    res.redirect('/auth/login')
+  return
+  }
   try {
     const user = await User.findOne({ mail })
     if (!user) {
       req.flash('validation', 'User name or password are incorrect')
       res.redirect('/auth/login')
-      console.log('No hace en login')
+      
       return
     }
 
@@ -74,9 +83,9 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
       req.session.currentUser = user
       res.redirect('/categories')
     } else {
-      req.flash('Validation', 'Username or password are incorrect')
-      res.redirect('/auth/login', data)
-      console.log('entro aqui')
+      req.flash('validation', 'Username or password are incorrect')
+      res.redirect('/auth/login')
+      console.log('Fallo password')
     }
   } catch (error) {
     next(error)

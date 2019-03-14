@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
+const moongoose = require('mongoose')
 const User = require('../models/User')
 const Match = require('../models/Match')
 const { requireUser } = require('../middlewares/auth')
-
+const { ObjectId} = moongoose.Types
 const uploadCloud = require('../config/cloudinary')
 
 /* GET home page. */
@@ -20,8 +20,12 @@ router.get('/categories', requireUser, (req, res, next) => {
 // Lista de los profesores
 router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const instrument = req.query.id
+  
+
   try {
-    const users = await User.find({ 'category': instrument })
+    
+    const users = await User.find({ 'category': instrument, _id: {$nin: [req.session.currentUser._id] }  })
+    // res.render('templates/list', { users, title: instrument })
     res.render('templates/list', { users, title: `${instrument} teachers` })
   } catch (error) {
     next(error)
@@ -91,8 +95,8 @@ router.post('/profile/:id/accept', async (req, res, next) => {
 // El profesor a declinado
 router.post('/profile/:id/decline', async (req, res, next) => {
   try {
-    const { id } = req.params
-    await Match.findOneAndDelete({ student: id }, { $set: { state: 'Aceptado' } })
+    const { id } = req.params;
+    await Match.findOneAndDelete({ student: id}, {$set: { state: 'Rechazado ' }});
 
     res.redirect('/profile')
   } catch (error) {
@@ -103,6 +107,7 @@ router.post('/profile/:id/decline', async (req, res, next) => {
 // Editar el perfil de usuario
 router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
+  
   try {
     const profile = await User.findById(_id)
     res.render('templates/edit', { profile, title: 'Edit profile' })
@@ -114,20 +119,20 @@ router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), asy
 router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const id = req.session.currentUser._id
 
-  const { url: imageProfile } = req.file
+  // const { url: imageProfile } = req.file
   const { name, longitude, latitude } = req.body
   const userProfile = {
     name,
-    imageProfile,
     location: {
       type: 'Point',
       coordinates: [longitude, latitude]
     }
   }
-
+  if(req.file){
+    userProfile.imageProfile = req.file.url
+  }
   try {
     await User.findByIdAndUpdate(id, userProfile)
-    // res.redirect('/profile/edit/lesson')
     res.redirect(`/detail/${id}`)
   } catch (error) {
     next(error)
