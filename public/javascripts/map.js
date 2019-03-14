@@ -1,4 +1,3 @@
-'use strict'
 
 const main = () => {
   mapboxgl.accessToken = 'pk.eyJ1IjoiamVkdWFyZCIsImEiOiJjanQ0OTcyd2kwMTVqM3lueWVsMXA3aXY3In0.JU7e-t92-A5EM-wY0yFKBQ';
@@ -20,7 +19,7 @@ const main = () => {
 
 
   // const updateLocation = () => {
-  //   if (!navigator.geolocation) {
+  //   if (!navigator.geolocation) {  
   //     console.log('Geolocation is not supported by your browser');
   //   } else {
   //     navigator.geolocation.getCurrentPosition(hasLocation, error);
