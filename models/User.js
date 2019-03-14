@@ -24,7 +24,8 @@ const userSchema = new Schema({
     
   },
   imageUrl: {
-    type: String
+    type: String,
+    default: '/images/default-portada.png'
   },
   imageProfile: {
     type: String,
