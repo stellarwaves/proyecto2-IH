@@ -20,8 +20,7 @@ const userSchema = new Schema({
     required: true
   },
   header: {
-    type: String,
-    
+    type: String
   },
   imageUrl: {
     type: String,
@@ -45,14 +44,6 @@ const userSchema = new Schema({
     },
     coordinates: [Number]
   }
-  // teacher: {
-  //   ref: 'User',
-  //   type: ObjectId
-  // }
-//   level: {
-//     type: String,
-//     enum: ['beginer', 'nice', 'master']
-//   }
 })
 
 const User = mongoose.model('User', userSchema)

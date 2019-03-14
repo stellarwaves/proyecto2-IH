@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 
 // pagina de las categorias
 router.get('/categories', requireUser, (req, res, next) => {
-  res.render('templates/categories', { title: 'Great time to learn' })
+  res.render('templates/categories', { title: 'Choose an instrument' })
 })
 
 // Lista de los profesores
@@ -24,7 +24,7 @@ router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.s
   try {
     const users = await User.find({ 'category': instrument, _id: { $nin: [req.session.currentUser._id] } })
     // res.render('templates/list', { users, title: instrument })
-    res.render('templates/list', { users, title: `${instrument} teachers` })
+    res.render('templates/list', { users, title: `Great time to learn ${instrument}` })
   } catch (error) {
     next(error)
   }
