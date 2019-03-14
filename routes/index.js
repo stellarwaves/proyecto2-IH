@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const moongoose = require('mongoose')
 const User = require('../models/User')
 const Match = require('../models/Match')
 const { requireUser } = require('../middlewares/auth')
-const { ObjectId } = moongoose.Types
 const uploadCloud = require('../config/cloudinary')
 
 /* GET home page. */
@@ -24,7 +22,7 @@ router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.s
   try {
     const users = await User.find({ 'category': instrument, _id: { $nin: [req.session.currentUser._id] } })
     // res.render('templates/list', { users, title: instrument })
-    res.render('templates/list', { users, title: `Great time to learn ${instrument}` })
+    res.render('templates/list', { users, title: `Learn ${instrument}` })
   } catch (error) {
     next(error)
   }
@@ -131,7 +129,6 @@ router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), as
   }
   try {
     await User.findByIdAndUpdate(id, userProfile)
-    // res.redirect(`/detail/${id}`)
     res.redirect('/profile')
   } catch (error) {
     next(error)
