@@ -83,19 +83,18 @@ router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (r
   try {
    const user = await Match.find({ student: { _id } }).populate('teacher')
 
-  
    const myStudents = await Match.find({ teacher: { _id } }).populate('student')
 
-   const myStudentState = myStudents.filter((student) => {
-    return student.state === 'Pendiente';
-   });
-   console.log(myStudentState)
-   const myTeacherState = user.filter((teacher) => {
-    return teacher.state === 'Aceptado';
-   });
-   console.log(myTeacherState)
+  //  const myStudentState = myStudents.filter((student) => {
+  //   return student.state === 'Pendiente';
+  //  });
+  //  console.log(myStudentState)
+  //  const myTeacherState = user.filter((teacher) => {
+  //   return teacher.state === 'Aceptado';
+  //  });
+  //  console.log(myTeacherState)
 
-    res.render('templates/match', { user, myStudents, myStudentState, myTeacherState, layout: 'layout-fullpage' })
+    res.render('templates/match', { user, myStudents, layout: 'layout-fullpage' })
   } catch (error) {
     next(error)
   }
