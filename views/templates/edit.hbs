@@ -4,54 +4,22 @@
       <label for="">Name</label>
       <input type="text" name="name" value="{{name}}">
    </div>
-    {{!-- <div>
-      <label for="">Description</label>
-      <input type="text" name="description" value="{{description}}">
-   </div>
-   <div>
-      <label for="">Tu instumento</label>
-      <select name="category" id="categories-list">
-         <option value="acordeon">Acordeon</option>
-         <option value="armonica">Armónica</option>
-         <option value="bajo">Bajo</option>
-         <option value="bateria">Batería</option>
-         <option value="castanuelas">Castañuelas</option>
-         <option value="clarinete">Clarinete</option>
-         <option value="flauta">Flauta</option>
-         <option value="guitarra">Guitarra</option>
-         <option value="maracas">Maracas</option>
-         <option value="piano">Piano</option>
-         <option value="saxofon">Saxofón</option>
-         <option value="trompeta">Trompeta</option>
-         <option value="violin">Violín</option>
-      </select>
-    --}}
-   {{!-- <div class="field img">
-      <label for="">Portada</label>
-      <input type="file" name="image-back">
-   </div>
-  --}}
    <div class="field img">
       <label for="">Perfil</label>
       <input type="file" name="image-perfil" value="{{imageProfile}}">
    </div>
 
-         {{!-- //localización --}}
-         {{!-- <p class="coordinates" hidden>{{location.coordinates}}</p>  --}}
-
-         <div>
-            <label for="latitude">Latitude</label>
-            <input type="text" id="latitude" name="latitude"{{latitude}}>
-         </div>
-
-         <div>
-            <label for="longitude">Longitude</label>
-            <input type="text" id="longitude" name="longitude" value="{{longitude}}">
-         </div>
-         <div class="map-edit" id="map"></div>
-
-
+   <div>
+      <label for="latitude">Latitude</label>
+      <input type="text" id="latitude" name="latitude"{{latitude}}>
    </div>
+
+   <div>
+      <label for="longitude">Longitude</label>
+      <input type="text" id="longitude" name="longitude" value="{{longitude}}">
+   </div>
+   <div class="map-edit" id="map"></div>
+
    <button type="submit">Guardar</button>
 
    <div>

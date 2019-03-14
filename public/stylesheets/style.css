@@ -530,11 +530,16 @@ li.lesson-card .info-container p{
   justify-content: space-evenly;
 }
 
-.btn-match{
+.match-footer form{
   width: 40%;
+}
+
+.btn-match{
+  width: 100%;
   border: 0;
   background: transparent;
   font-size: 1.1em;
+  line-height: 50px;
 }
 
 .btn-match.decline{
