@@ -46,7 +46,7 @@ router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (r
     }
     const createUser = await User.create(newUser)
     req.session.currentUser = createUser
-    res.redirect('/login')
+    res.redirect('/categories')
   } catch (error) {
     next(error)
   }
@@ -75,7 +75,7 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
       res.redirect('/categories')
     } else {
       req.flash('Validation', 'Username or password are incorrect')
-      res.redirect('/auth/login')
+      res.redirect('/auth/login', data)
       console.log('entro aqui')
     }
   } catch (error) {

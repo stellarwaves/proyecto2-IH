@@ -33,18 +33,18 @@
   --}}
    <div class="field img">
       <label for="">Perfil</label>
-      <input type="file" name="image-perfil">
+      <input type="file" name="image-perfil" value="{{imageProfile}}">
    </div>
 
          {{!-- //localización --}}
          <div>
             <label for="latitude">Latitude</label>
-            <input type="text" id="latitude" name="latitude">
+            <input type="text" id="latitude" name="latitude"{{latitude}}>
          </div>
 
          <div>
             <label for="longitude">Longitude</label>
-            <input type="text" id="longitude" name="longitude">
+            <input type="text" id="longitude" name="longitude" value="{{longitude}}">
          </div>
 
 
@@ -52,9 +52,16 @@
    </div>
    <button type="submit">Guardar</button>
 
+   <div>
+      <button id="location">Ponga su localización</button>
+   </div>
    <script src="/javascripts/location.js"></script>
 </form>
 
 <form action="/profile/delete" method="POST">
    <button type="submit">Borrar</button>
 </form>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+<script src="/javascripts/map.js"></script>
