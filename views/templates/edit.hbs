@@ -20,20 +20,18 @@
             <input type="text" id="longitude" name="longitude" value="{{longitude}}">
          </div>
          <div class="map-edit" id="map"></div>
-         <div>
-            <button class="btnlocation" type="submit">Ponga su localización</button>
-         </div>
       </div>
-   </form>
 
    <button class="btn btn-primary" type="submit">Guardar</button>
+
+   </form>
 
    <form action="/profile/delete" method="POST">
       <button type="submit">Borrar</button>
    </form>
 </section>
 
-<script src="/javascripts/location.js"></script>
+{{!-- <script src="/javascripts/location.js"></script> --}}
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-<script src="/javascripts/map.js"></script>  --}}
+<script src="/javascripts/map.js"></script> 
