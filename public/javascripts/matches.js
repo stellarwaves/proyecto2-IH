@@ -14,7 +14,7 @@ function misEstudiantes () {
   document.getElementById('estudiantes').style.display = 'block'
 }
 
-function myFunction (e) {
+function activeTabs (e) {
   const elems = document.querySelectorAll('.active');
   [].forEach.call(elems, function (el) {
 	  el.classList.remove('active')
