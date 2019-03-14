@@ -36,8 +36,12 @@
             </div>
             <p>{{this.student.description}}</p>
             <div class="match-footer">
-               <a href="/profile/{{this.student._id}}/accept" class="btn-match accept"><i class="fas fa-check"></i> Accept</a>
-               <a href="/profile/{{this.student._id}}/decline" class="btn-match decline"><i class="fas fa-times"></i> Decline</a>
+               <form action="/profile/{{this.student._id}}/accept" method="POST">
+                  <button type="submit" class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
+               </form>
+               <form action="/profile/{{this.student._id}}/decline" method="POST">
+                  <button type="submit" class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+               </form>
             </div>
          </div>
       

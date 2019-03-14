@@ -101,11 +101,12 @@ router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (r
 })
 //El Profesor a aceptado
 
-router.get('/profile/:id/accept', async (req, res, next) => {
+router.post('/profile/:id/accept', async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Match.findByIdAndUpdate(id, { state: 'Aceptado' });
-	console.log(id)
+    await Match.findOneAndUpdate({ student: id}, {$set: { state: 'Aceptado' }});
+    console.log(id)
+  
     res.redirect('/profile');
   } catch (error) {
     next(error);
