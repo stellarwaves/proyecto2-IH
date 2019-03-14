@@ -10,9 +10,11 @@
 </head>
 <body>
    <header class="profile-header">
-      {{> nav}}
-      <h1>Hola</h1>
-      <a href="/profile/edit">Edit</a>
+      <div class="nav">
+         {{> nav}}
+         <h1>{{title}}</h1>
+         <a href="/profile/edit"><i class="fas fa-cog"></i></a>
+      </div>
    </header>
    {{{body}}}
 </body>

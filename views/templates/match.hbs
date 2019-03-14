@@ -1,5 +1,5 @@
-<section class="profile-section"> 
-  
+<section class="profile-section">
+
    <div class="tabs"  onclick="activeTabs(event)">  
       <button class="btn-tab active" onclick="misProfesores()">My teachers</button>
       <button class="btn-tab" onclick="misEstudiantes()">My students</button>
@@ -18,7 +18,7 @@
             <p>{{this.teacher.description}}</p>
              
             <div class="match-footer">
-               <p>{{this.state}}</p> 
+               <h4><i class="far fa-clock"></i> {{this.state}}</h4> 
             </div>
          </div>
       {{/each}} 

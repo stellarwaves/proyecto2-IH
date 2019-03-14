@@ -4,32 +4,24 @@
 <section class="form-section">
    <form class="user-form" method="POST" action="/auth/signup" enctype="multipart/form-data">
       <div class="inputs">
+         <div class="field img">
+            <label for="">Profile image</label>
+            <input type="file" name="image-perfil">
+         </div>
          <div class="field">
             <label>Name</label>
             <input type="text" name="name" placeholder="Name">
          </div>
-
          <div class="field">
             <label>Email</label>
             <input type="email" name="mail" placeholder="Email">
          </div>
-
-         <div class="field">
+         <div class="field last">
             <label>Password</label>
             <input type="password" name="password" placeholder="Password">
          </div>
 
          {{!-- <div class="field">
-            <label>Name your course</label>
-            <input type="text" name="header" placeholder="Name your course">
-         </div>
-
-         <div class="field">
-            <label>Description</label>
-            <input type="text" name="description" placeholder="Description">
-         </div> --}}
-
-         <div class="field">
             <label>Choose your instrument</label>
             <select name="category" id="ctegories-list">
                <option value="acordeon">Acordeón</option>
@@ -46,12 +38,8 @@
                <option value="trompeta">Trompeta</option>
                <option value="violin">Violín</option>
             </select>
-         </div>
+         </div> --}}
 
-         <div class="field last img">
-            <label for="">Portada</label>
-            <input type="file" name="image-perfil">
-         </div>
          <p class="create-account">Already have an account? <a href="/auth/login">Go to login</a></p>
          
          {{!-- //localización Preguntar si pongo la localizacion en hiddden--}}

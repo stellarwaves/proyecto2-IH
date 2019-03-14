@@ -15,8 +15,8 @@ const matchSchema = new Schema({
   },
   state: {
     type: String,
-    enum: ['Aceptado', 'Rechazado','Pendiente'],
-    default: 'Pendiente'
+    enum: ['Accepted', 'Rejected', 'Pending'],
+    default: 'Pending'
   }
 })
 

@@ -1,41 +1,41 @@
-<h1>Editar Lección</h1>
-
-<form action="/profile/edit/lesson" method="POST" enctype="multipart/form-data">
-  <div>
-      <label for="">Titulo</label>
-      <input type="text" name="header" value="{{header}}">
-   </div>
+<section class="form-section">
+   <form action="/profile/edit/lesson" method="POST" enctype="multipart/form-data">
    <div>
-      <label for="">Description</label>
-      <input type="text" name="description" value="{{description}}">
-   </div>
-   <div>
-      <label for="">Tu instumento</label>
-      <select name="category" id="categories-list">
-         <option value="acordeon">Acordeon</option>
-         <option value="armonica">Armónica</option>
-         <option value="bajo">Bajo</option>
-         <option value="bateria">Batería</option>
-         <option value="castanuelas">Castañuelas</option>
-         <option value="clarinete">Clarinete</option>
-         <option value="flauta">Flauta</option>
-         <option value="guitarra">Guitarra</option>
-         <option value="maracas">Maracas</option>
-         <option value="piano">Piano</option>
-         <option value="saxofon">Saxofón</option>
-         <option value="trompeta">Trompeta</option>
-         <option value="violin">Violín</option>
-      </select>
- 
-  <div class="field img">
-      <label for="">Portada</label>
-      <input type="file" name="image-back">
-   </div>
+         <label for="">Title</label>
+         <input type="text" name="header" value="{{header}}">
+      </div>
+      <div>
+         <label for="">Description</label>
+         <input type="text" name="description" value="{{description}}">
+      </div>
+      <div>
+         <label for="">Tu instumento</label>
+         <select name="category" id="categories-list">
+            <option value="acordeon">Acordeon</option>
+            <option value="armonica">Armónica</option>
+            <option value="bajo">Bajo</option>
+            <option value="bateria">Batería</option>
+            <option value="castanuelas">Castañuelas</option>
+            <option value="clarinete">Clarinete</option>
+            <option value="flauta">Flauta</option>
+            <option value="guitarra">Guitarra</option>
+            <option value="maracas">Maracas</option>
+            <option value="piano">Piano</option>
+            <option value="saxofon">Saxofón</option>
+            <option value="trompeta">Trompeta</option>
+            <option value="violin">Violín</option>
+         </select>
+   
+      <div class="field img">
+         <label for="">Portada</label>
+         <input type="file" name="image-back">
+      </div>
 
-<button type="submit">Guardar</button>
+      <button type="submit">Guardar</button>
 
-</form> 
+   </form> 
 
- <form action="/profile/delete" method="POST">
-   <button type="submit">Borrar</button>
-</form>
+   <form action="/profile/delete" method="POST">
+      <button type="submit">Borrar</button>
+   </form>
+</section>

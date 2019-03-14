@@ -1,38 +1,39 @@
-<h1>Hola soy pririnolas el perfil</h1>
-<form action="/profile/edit" method="POST" enctype="multipart/form-data">
-   <div>
-      <label for="">Name</label>
-      <input type="text" name="name" value="{{name}}">
-   </div>
-   <div class="field img">
-      <label for="">Perfil</label>
-      <input type="file" name="image-perfil" value="{{imageProfile}}">
-   </div>
+<section class="form-section">
+   <form class="user-form" action="/profile/edit" method="POST" enctype="multipart/form-data">
+       <div class="inputs">
+         <div class="field">
+            <label for="">Name</label>
+            <input type="text" name="name" value="{{name}}" placeholder="Name">
+         </div>
+         <div class="field img">
+            <label for="">Profile photo</label>
+            <input type="file" name="image-perfil" value="{{imageProfile}}">
+         </div>
 
-   <div>
-      <label for="latitude">Latitude</label>
-      <input type="text" id="latitude" name="latitude"{{latitude}}>
-   </div>
+         <div class="field">
+            <label for="latitude">Latitude</label>
+            <input type="text" id="latitude" name="latitude"{{latitude}}>
+         </div>
 
-   <div>
-      <label for="longitude">Longitude</label>
-      <input type="text" id="longitude" name="longitude" value="{{longitude}}">
-   </div>
-   {{!-- <div class="map-edit" id="map" style="heigth: 400px; width: 400px"></div> --}}
+         <div class="field">
+            <label for="longitude">Longitude</label>
+            <input type="text" id="longitude" name="longitude" value="{{longitude}}">
+         </div>
+         <div class="map-edit" id="map"></div>
+         <div>
+            <button class="btnlocation" type="submit">Ponga su localización</button>
+         </div>
+      </div>
+   </form>
 
-   <button type="submit">Guardar</button>
+   <button class="btn btn-primary" type="submit">Guardar</button>
 
-   <div>
-      {{!-- <button class="btnlocation" type="submit">Ponga su localización</button> --}}
-   </div>
-   <script src="/javascripts/location.js"></script>
-</form>
+   <form action="/profile/delete" method="POST">
+      <button type="submit">Borrar</button>
+   </form>
+</section>
 
-<form action="/profile/delete" method="POST">
-   <button type="submit">Borrar</button>
-</form>
-
-{{!-- 
+<script src="/javascripts/location.js"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 <script src="/javascripts/map.js"></script>  --}}
