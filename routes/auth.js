@@ -25,7 +25,7 @@ router.post('/signup', requireAnon, uploadCloud.single('image-perfil'), async (r
   let longitude = 41.154878
   let latitude = 2.14246
   if (req.file) {
-    imageProfile = '/images/perfilDefecto.png'
+    imageProfile = req.file.url
   }
   try {
     const result = await User.findOne({ name })
