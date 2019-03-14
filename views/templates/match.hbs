@@ -16,9 +16,9 @@
                </div>
             </div>
             <p>{{this.teacher.description}}</p>
+             
             <div class="match-footer">
-               <button class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
-               <button class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+               <p>{{this.state}}</p> 
             </div>
          </div>
       {{/each}} 
@@ -36,8 +36,8 @@
             </div>
             <p>{{this.student.description}}</p>
             <div class="match-footer">
-               <button class="btn-match accept"><i class="fas fa-check"></i> Accept</button>
-               <button class="btn-match decline"><i class="fas fa-times"></i> Decline</button>
+               <a href="/profile/{{this.student._id}}/accept" class="btn-match accept"><i class="fas fa-check"></i> Accept</a>
+               <a href="/profile/{{this.student._id}}/decline" class="btn-match decline"><i class="fas fa-times"></i> Decline</a>
             </div>
          </div>
       

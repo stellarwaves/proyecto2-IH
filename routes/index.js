@@ -94,18 +94,18 @@ router.get('/profile', requireUser, uploadCloud.single('image-perfil'), async (r
   //  });
   //  console.log(myTeacherState)
 
-    res.render('templates/match', { user, myStudents, layout: 'layout-fullpage' })
+    res.render('templates/match', { user, myStudents, layout: 'layout-match' })
   } catch (error) {
     next(error)
   }
 })
 //El Profesor a aceptado
 
-router.get('/profile/message/:id/accept', async (req, res, next) => {
+router.get('/profile/:id/accept', async (req, res, next) => {
   try {
     const { id } = req.params;
     await Match.findByIdAndUpdate(id, { state: 'Aceptado' });
-	
+	console.log(id)
     res.redirect('/profile');
   } catch (error) {
     next(error);
@@ -113,7 +113,7 @@ router.get('/profile/message/:id/accept', async (req, res, next) => {
 });
 
 // El profesor a declinado
-router.get('/profile/message/:id/decline', async (req, res, next) => {
+router.get('/profile/:id/decline', async (req, res, next) => {
   try {
     const { id } = req.params;
     await Match.findByIdAndDelete({id});
