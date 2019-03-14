@@ -10,7 +10,7 @@
             <input type="text" name="description" value="{{description}}">
          </div>
          <div class="field">
-            <label for="">Tu instumento</label>
+            <label for="">Your instrument</label>
             <select name="category" id="categories-list">
                <option value="acordeon">Acordeon</option>
                <option value="armonica">Armónica</option>
@@ -27,17 +27,16 @@
                <option value="violin">Violín</option>
             </select>
          </div>
-         <div class="field img">
+         <div class="field img last">
             <label for="">Portada</label>
             <input type="file" name="image-back">
          </div>
       </div>
 
-      <button type="submit">Guardar</button>
-
+      <button class="btn btn-primary" type="submit">Save</button>
    </form> 
 
    <form action="/profile/delete" method="POST">
-      <button type="submit">Borrar</button>
+      <button class="btn-delete" type="submit">Delete lesson</button>
    </form>
 </section>

@@ -14,7 +14,6 @@
             <label for="latitude">Latitude</label>
             <input type="text" id="latitude" name="latitude"{{latitude}}>
          </div>
-
          <div class="field">
             <label for="longitude">Longitude</label>
             <input type="text" id="longitude" name="longitude" value="{{longitude}}">
@@ -24,16 +23,14 @@
             <button class="btnlocation" type="submit">Ponga su localización</button>
          </div>
       </div>
+      <button class="btn btn-primary" type="submit">Save</button>
    </form>
-
-   <button class="btn btn-primary" type="submit">Guardar</button>
-
    <form action="/profile/delete" method="POST">
-      <button type="submit">Borrar</button>
+      <button class="btn-delete" type="submit">Delete profile</button>
    </form>
 </section>
 
 <script src="/javascripts/location.js"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-<script src="/javascripts/map.js"></script>  --}}
+<script src="/javascripts/map.js"></script>

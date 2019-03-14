@@ -4,7 +4,7 @@ const moongoose = require('mongoose')
 const User = require('../models/User')
 const Match = require('../models/Match')
 const { requireUser } = require('../middlewares/auth')
-const { ObjectId} = moongoose.Types
+const { ObjectId } = moongoose.Types
 const uploadCloud = require('../config/cloudinary')
 
 /* GET home page. */
@@ -20,11 +20,9 @@ router.get('/categories', requireUser, (req, res, next) => {
 // Lista de los profesores
 router.get('/list', requireUser, uploadCloud.single('image-back'), uploadCloud.single('image-perfil'), async (req, res, next) => {
   const instrument = req.query.id
-  
 
   try {
-    
-    const users = await User.find({ 'category': instrument, _id: {$nin: [req.session.currentUser._id] }  })
+    const users = await User.find({ 'category': instrument, _id: { $nin: [req.session.currentUser._id] } })
     // res.render('templates/list', { users, title: instrument })
     res.render('templates/list', { users, title: `${instrument} teachers` })
   } catch (error) {
@@ -95,8 +93,8 @@ router.post('/profile/:id/accept', async (req, res, next) => {
 // El profesor a declinado
 router.post('/profile/:id/decline', async (req, res, next) => {
   try {
-    const { id } = req.params;
-    await Match.findOneAndDelete({ student: id}, {$set: { state: 'Rechazado ' }});
+    const { id } = req.params
+    await Match.findOneAndDelete({ student: id }, { $set: { state: 'Rechazado ' } })
 
     res.redirect('/profile')
   } catch (error) {
@@ -107,7 +105,7 @@ router.post('/profile/:id/decline', async (req, res, next) => {
 // Editar el perfil de usuario
 router.get('/profile/edit', requireUser, uploadCloud.single('image-perfil'), async (req, res, next) => {
   const { _id } = req.session.currentUser
-  
+
   try {
     const profile = await User.findById(_id)
     res.render('templates/edit', { profile, title: 'Edit profile' })
@@ -128,12 +126,13 @@ router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), as
       coordinates: [longitude, latitude]
     }
   }
-  if(req.file){
+  if (req.file) {
     userProfile.imageProfile = req.file.url
   }
   try {
     await User.findByIdAndUpdate(id, userProfile)
-    res.redirect(`/detail/${id}`)
+    // res.redirect(`/detail/${id}`)
+    res.redirect('/profile')
   } catch (error) {
     next(error)
   }
@@ -164,7 +163,8 @@ router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'
 
   try {
     await User.findByIdAndUpdate(id, userProfileLesson)
-    res.redirect('/categories')
+    res.redirect(`/detail/${id}`)
+    // res.redirect('/categories')
   } catch (error) {
     next(error)
   }
