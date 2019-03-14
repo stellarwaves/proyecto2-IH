@@ -114,10 +114,10 @@ router.post('/profile/:id/accept', async (req, res, next) => {
 });
 
 // El profesor a declinado
-router.get('/profile/:id/decline', async (req, res, next) => {
+router.post('/profile/:id/decline', async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Match.findByIdAndDelete({id});
+    await Match.findOneAndDelete({ student: id}, {$set: { state: 'Aceptado' }});
 
     res.redirect('/profile');
   } catch (error) {
