@@ -41,7 +41,7 @@ router.get('/detail/:id', requireUser, uploadCloud.single('image-back'), uploadC
 
 router.post('/detail/:id', requireUser, async (req, res, next) => {
   const { id } = req.params
-  console.log(id)
+  // console.log(id)
   const { _id } = req.session.currentUser
   // console.log(_id)
   const myTeacher = {
@@ -50,10 +50,13 @@ router.post('/detail/:id', requireUser, async (req, res, next) => {
   }
 
   try {
-    const match = await Match.create(myTeacher)
+    await Match.create(myTeacher)
+    // const buttonOnclick = () => {
+    //   swal('Oops!', 'Something went wrong on the page!', 'error')
+    // }
     // console.log(match)
     /* res.redirect(`/${id}/match`) */
-    res.redirect('/detail/:id')
+    res.redirect(`/detail/${id}`)
   } catch (error) {
     next(error)
   }

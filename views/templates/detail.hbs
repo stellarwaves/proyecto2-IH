@@ -15,14 +15,16 @@
        <p class="coordinates" hidden>{{profesor.location.coordinates}}</p> 
       <div class="map-detail" id="map"></div>
 
-      <form action="/detail/{{profesor._id}}" method="post">
-         <button  class= "btn btn-primary" type="submit">Teach Me</button>
+      <form id="form-teachme" action="/detail/{{profesor._id}}" method="post">
+         <button id="teach-me" class="btn btn-primary" type="submit">Teach Me</button>
       </form>
    </div>
-
 </section>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 
 <script src="/javascripts/map.js"></script>
+
+
+
