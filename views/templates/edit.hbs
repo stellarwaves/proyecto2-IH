@@ -1,5 +1,5 @@
 <section class="form-section height-100">
-   <form class="user-form" action="/profile/edit" method="POST" enctype="multipart/form-data">
+   <form id="profile-edit" class="user-form" action="/profile/edit" method="POST" enctype="multipart/form-data">
        <div class="inputs">
          <div class="field">
             <label for="">Name</label>
@@ -22,7 +22,7 @@
       </div>
       <button class="btn btn-primary" type="submit">Save</button>
    </form>
-   <form action="/profile/delete" method="POST">
+   <form id="profile-delete" action="/profile/delete" method="POST">
       <button class="btn-delete" type="submit">Delete profile</button>
    </form>
 </section>

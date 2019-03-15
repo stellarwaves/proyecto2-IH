@@ -139,6 +139,7 @@ router.post('/profile/edit', requireUser, uploadCloud.single('image-perfil'), as
     next(error)
   }
 })
+
 router.get('/profile/edit/lesson', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser
   try {
@@ -179,6 +180,7 @@ router.post('/profile/delete', requireUser, async (req, res, next) => {
   const id = req.session.currentUser._id
   try {
     await User.findByIdAndDelete(id)
+    delete req.session.currentUser
     res.redirect('/')
   } catch (error) {
     next(error)
