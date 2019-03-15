@@ -419,20 +419,22 @@ li.lesson-card .img-container p{
 }
 
 li.lesson-card .img-profile{
-  width: 45px;
-  height: 45px;
-  margin-right: 10px;
-  border-radius: 100%;
-  overflow: hidden;
-  object-fit: cover;
+  
 }
 
 li.lesson-card .img-profile img{
-  width: 100%;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px 0 0;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 2px solid #85bbff;
+  object-fit: cover;
+  padding: 3px;
 }
 
 li.lesson-card .info-container{
-  margin-top: 15px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
 }
