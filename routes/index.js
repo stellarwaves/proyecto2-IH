@@ -169,7 +169,15 @@ router.post('/profile/edit/lesson', requireUser, uploadCloud.single('image-back'
   try {
     await User.findByIdAndUpdate(id, userProfileLesson)
     res.redirect(`/detail/${id}`)
-    // res.redirect('/categories')
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/profile/mylesson', requireUser, async (req, res, next) => {
+  const userId = req.session.currentUser._id
+  try {
+    res.redirect(`/detail/${userId}`)
   } catch (error) {
     next(error)
   }
